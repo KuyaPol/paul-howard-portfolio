@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Browser Usage Tracker",
+  "version": "0.2.0",
+  "description": "Private, local-only browser activity totals. No history, no full URLs, no server.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzIvlBS341HLJemZntBXdr5twA8jDUJ9GsXtqhoa8E1plw+tTt5+M4D3snO/kzV1I5RiZBnANa5Ub31aJiVe6kq0XCRhlQpUWQpqh5NEwz2qdz3outrHd8hlPC2QHparjxQ3IWMgNGgh1cHevcYfVWJ5g/c780fA0zS+5acsHPveKwljbX8paXL+VVOAE5p9/FdjQblroU3cIGTHULETG552R00YY3uznhL0RT6h8gk9vagvgMYmYVGMqK8IXO9JnMrBxGvjPqegOUGlIn/m9DTpdpbnQzLEQrX2XMahVCb6F1+t4vYLt+ZoSTnTiGXgnr9ijn6Wfn/uptpjIpGh4EwIDAQAB",
+  "permissions": ["storage", "alarms", "idle", "tabs"],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Browser Usage Tracker"
+  },
+  "options_page": "options/options.html",
+  "externally_connectable": {
+    "matches": [
+      "https://kuyapol.github.io/*",
+      "http://localhost/*",
+      "http://127.0.0.1/*"
+    ]
+  }
+}

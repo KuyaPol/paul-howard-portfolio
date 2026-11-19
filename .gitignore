@@ -1,4 +1,4 @@
-﻿.agents/
+.agents/
 skills-lock.json
 .env
 .env.*
@@ -6,3 +6,17 @@ skills-lock.json
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Local dependencies and generated files
+node_modules/
+public/
+.wrangler/
+.dev.vars*
+# Local review artifacts
+portfolio-review.zip
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+
+# Local design-tool and review artifacts
+.taste/
+.impeccable/

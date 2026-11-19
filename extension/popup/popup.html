@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Usage Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header class="popup-header">
+      <h1>Browser Usage Tracker</h1>
+      <span class="status" id="status" data-status="loading">Checking…</span>
+    </header>
+
+    <section class="hero" aria-labelledby="total-label">
+      <span class="label" id="total-label">Today · active browsing</span>
+      <strong class="total" id="today-total">00:00:00</strong>
+      <span class="subtle" id="day">—</span>
+    </section>
+
+    <section class="stats" aria-label="Current browser state">
+      <div><span class="label">Open tabs</span><strong id="open-tabs">—</strong></div>
+      <div><span class="label">Most used</span><strong id="top-domain">—</strong></div>
+    </section>
+
+    <section class="sites" aria-labelledby="sites-title">
+      <h2 id="sites-title">Most-used websites</h2>
+      <ol id="top-sites"></ol>
+      <p class="empty" id="empty-sites" hidden>No activity recorded yet.</p>
+    </section>
+
+    <section class="share-row" aria-label="Portfolio sharing">
+      <span class="label">Share with portfolio</span>
+      <button id="share" class="toggle" type="button" aria-pressed="false">Off</button>
+    </section>
+
+    <section class="actions" aria-label="Tracker controls">
+      <button id="toggle" type="button">Pause tracking</button>
+      <button id="clear" class="secondary" type="button">Clear data</button>
+    </section>
+
+    <p class="note">
+      Only the active tab in the focused Chrome window is counted while your computer is active.
+      Idle and locked time are excluded. Only domain-level totals are stored locally — no full
+      URLs, page titles, form contents, or browsing history. Nothing is sent to a server.
+      Portfolio sharing is off until you enable it above, and only domain totals are exposed.
+    </p>
+
+    <button id="options" class="link-button" type="button">Privacy &amp; options</button>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

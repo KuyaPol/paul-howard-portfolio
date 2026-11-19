@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101110">
+  <meta name="description" content="Explore proposed software concepts Paul Howard could build.">
+  <title>Beyond the Portfolio | Paul Howard</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="beyond-page" id="top">
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="wordmark" href="../" aria-label="Paul Howard, portfolio">Paul Howard<span aria-hidden="true">.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">Menu</button>
+      <div class="nav-links" id="primary-links">
+        <a href="../">Portfolio</a><a href="#concepts">Concepts</a><a class="nav-contact" href="mailto:paulhoward1104@gmail.com">Contact Paul <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+  <main class="beyond-main">
+    <section class="beyond-hero shell" aria-labelledby="beyond-title">
+      <p class="eyebrow">Paul Howard · Concept studies</p>
+      <div class="beyond-hero-main">
+        <h1 id="beyond-title" data-hero-motion>Beyond the<br>Portfolio.</h1>
+        <div class="beyond-hero-aside" data-hero-motion>
+          <p>These are examples of the digital products and systems I can design and develop. Explore an idea and see what’s possible. Each concept is an illustrative prototype, not a live service.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#concepts">Explore concepts <span aria-hidden="true">↘</span></a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com">Email Paul</a></div>
+        </div>
+      </div>
+      <p class="beyond-wordmark" aria-hidden="true">PAUL HOWARD</p>
+      <div class="beyond-rule"><span>INDEPENDENT DEVELOPER</span><span>CONCEPT STUDIES / 2026</span></div>
+    </section>
+
+    <section class="concept-overview shell" id="concepts" aria-labelledby="concepts-title">
+      <header class="concept-overview-heading" data-reveal="rise"><p class="eyebrow">Three directions / Proposed concepts</p><h2 id="concepts-title">Choose a concept<br>to explore.</h2></header>
+      <div class="concept-stage">
+        <div class="concept-selector" role="tablist" aria-label="Choose a software concept" aria-orientation="vertical">
+          <button class="concept-tab" id="tab-finance" role="tab" aria-selected="true" aria-controls="concept-panel-finance" tabindex="0" data-concept="finance"><span>01</span><span>Personal finance<br>&amp; budgets</span><span aria-hidden="true">↗</span></button>
+          <button class="concept-tab" id="tab-business" role="tab" aria-selected="false" aria-controls="concept-panel-business" tabindex="-1" data-concept="business"><span>02</span><span>Small business<br>operations</span><span aria-hidden="true">↗</span></button>
+          <button class="concept-tab" id="tab-pc" role="tab" aria-selected="false" aria-controls="concept-panel-pc" tabindex="-1" data-concept="pc"><span>03</span><span>PC performance<br>&amp; system health</span><span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="concept-preview-shell" id="concept-preview" data-concept="finance" data-reveal="media">
+          <div class="preview-heading"><div><span class="preview-label" data-preview-label>CONCEPT 01 / PERSONAL FINANCE</span><h3 data-preview-title>Money, with a clearer view.</h3></div><span class="preview-status">ILLUSTRATIVE PREVIEW · SAMPLE DATA</span></div>
+          <div class="finance-preview concept-screen" data-screen="finance" id="concept-panel-finance" role="tabpanel" aria-labelledby="tab-finance" tabindex="0">
+            <div class="concept-controls finance-controls"><div class="concept-control-group" role="group" aria-label="Sample reporting period"><button class="concept-control" type="button" data-finance-range="month" aria-pressed="true">Monthly</button><button class="concept-control" type="button" data-finance-range="year" aria-pressed="false">Yearly</button></div><label class="concept-range">Sample budget use <input id="finance-budget" type="range" min="0" max="100" step="5" value="60"><output id="finance-budget-output" for="finance-budget">60% used</output></label></div>
+            <div class="finance-summary"><span class="preview-label" data-finance-period>MONTHLY OVERVIEW · SAMPLE</span><strong data-finance-total>$4,820</strong><span data-finance-total-note>Illustrative income</span><div class="finance-mini-bars" data-finance-bars aria-label="Illustrative monthly comparison"><i style="--bar:45%" data-month="45" data-year="52" title="January: illustrative"></i><i style="--bar:62%" data-month="62" data-year="58" title="February: illustrative"></i><i style="--bar:52%" data-month="52" data-year="64" title="March: illustrative"></i><i style="--bar:78%" data-month="78" data-year="71" title="April: illustrative"></i><i style="--bar:66%" data-month="66" data-year="78" title="May: illustrative"></i><i style="--bar:90%" data-month="90" data-year="86" title="June: illustrative"></i></div></div>
+            <div class="finance-side"><div class="preview-unit"><span class="preview-label">SAVINGS GOAL · SAMPLE</span><strong>68%</strong><div class="progress-track"><i></i></div><span>Illustrative progress</span></div><div class="preview-unit"><span class="preview-label">BUDGET VIEW · SAMPLE</span><strong data-finance-budget-view>60% used</strong><div class="progress-track budget-track"><i data-finance-budget-fill style="width:60%"></i></div><span>Adjust the slider to explore</span></div></div>
+            <div class="spend-breakdown"><span class="preview-label">SPENDING BREAKDOWN · SAMPLE</span><p><span>Housing</span><b data-finance-spend="housing">$1,650</b></p><p><span>Daily costs</span><b data-finance-spend="daily">$780</b></p><p><span>Savings</span><b data-finance-spend="savings">$690</b></p><small>Portfolio views, market data and TradingView/API connections are proposed; no live connection.</small></div>
+          </div>
+          <div class="business-preview concept-screen" data-screen="business" id="concept-panel-business" role="tabpanel" aria-labelledby="tab-business" tabindex="0" hidden>
+            <div class="concept-controls business-controls" role="group" aria-label="Sample inventory filters"><button class="concept-control" type="button" data-inventory-filter="all" aria-pressed="true">All items</button><button class="concept-control" type="button" data-inventory-filter="low" aria-pressed="false">Needs attention</button><span class="inventory-count" data-inventory-count>5 sample records</span></div>
+            <aside class="business-sidebar"><span class="preview-label">WORKSPACE</span><strong>Northline<br>Supply</strong><span>Concept workspace</span><a href="#business-concept">Overview</a><a href="#business-concept">Inventory</a><a href="#business-concept">Orders</a></aside>
+            <div class="business-dashboard"><div class="business-stats"><div><span class="preview-label">SALES · SAMPLE</span><strong>$8,640</strong><small>Illustrative month</small></div><div><span class="preview-label">OPEN ORDERS</span><strong>12</strong><small>Sample records</small></div><div><span class="preview-label">STOCK WATCH</span><strong>04</strong><small>Illustrative items</small></div></div><div class="inventory-table"><div class="table-title"><strong>Inventory overview</strong><span>Sample records</span></div><p data-stock="low"><b>Field notebook</b><span>Stock watch</span><small>Illustrative</small></p><p data-stock="in"><b>Canvas tote</b><span>In stock</span><small>Illustrative</small></p><p data-stock="low"><b>Desk planner</b><span>Reorder</span><small>Illustrative</small></p><p data-stock="in"><b>Label rolls</b><span>In stock</span><small>Illustrative</small></p><p data-stock="low"><b>Storage boxes</b><span>Reorder</span><small>Illustrative</small></p></div></div>
+          </div>
+          <div class="pc-preview concept-screen" data-screen="pc" id="concept-panel-pc" role="tabpanel" aria-labelledby="tab-pc" tabindex="0" hidden>
+            <div class="concept-controls pc-controls" role="group" aria-label="Illustrative system metric selector"><button class="concept-control" type="button" data-pc-metric="cpu" aria-pressed="true">CPU</button><button class="concept-control" type="button" data-pc-metric="gpu" aria-pressed="false">GPU</button><button class="concept-control" type="button" data-pc-metric="memory" aria-pressed="false">Memory</button><button class="concept-control" type="button" data-pc-metric="storage" aria-pressed="false">Storage</button></div>
+            <div class="pc-monitor"><div class="pc-monitor-top"><span>LOCAL SYSTEM / CONCEPT VIEW</span><span>ILLUSTRATIVE READINGS</span></div><div class="pc-core"><div class="pc-primary-metric"><span data-pc-metric-label>CPU LOAD</span><strong data-pc-metric-value>42%</strong><small>Illustrative reading</small><div class="pc-history" data-pc-history aria-label="Illustrative CPU history"><i style="--h:38%"></i><i style="--h:46%"></i><i style="--h:42%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:62%"></i><i style="--h:42%"></i><i style="--h:36%"></i></div></div><div class="pc-metrics"><div><span>GPU</span><strong>28%</strong><i><b style="--meter:28%"></b></i></div><div><span>MEMORY</span><strong>11.2 / 32 GB</strong><i><b style="--meter:46%"></b></i></div><div><span>STORAGE</span><strong>68%</strong><i><b style="--meter:68%"></b></i></div></div></div><div class="pc-foot"><span>Temperature monitoring, utilization history, alerts, preferences and downloadable reports are proposed.</span><span>NO DEVICE CONNECTED</span></div></div>
+          </div>
+        </div>
+        <div class="concept-stage-note" data-reveal="slide"><span>INTERACTIVE CONCEPT PREVIEW</span><span><a href="#finance-concept" data-concept-detail-link>Open concept details ↓</a></span></div>
+      </div>
+    </section>
+
+    <section class="concept-detail finance-detail" id="finance-concept" aria-labelledby="finance-title" data-concept-detail="finance">
+      <div class="concept-detail-inner shell">
+        <header class="detail-heading" data-reveal="rise"><p class="eyebrow">Concept 01 / Personal finance</p><h2 id="finance-title">Make room<br>for the next move.</h2><p>Track income, expenses, and savings goals, then review spending and portfolio trends in one proposed dashboard.</p></header>
+        <div class="detail-content" data-reveal="slide"><div class="detail-features"><h3>Designed to bring the picture together.</h3><ul><li>Monthly income and expenses</li><li>Savings goals and budget limits</li><li>Yearly analytics and spending views</li><li>Portfolio tracking and market visualization</li><li>Optional market data or TradingView connection, proposed</li></ul></div><div class="detail-aside"><p>Investment views are for tracking and visualization, not financial advice or automatic trading. Alerts and notifications are proposed features.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=Personal%20Finance%20Tracker">Discuss a finance tracker <span aria-hidden="true">↗</span></a></div></div>
+      </div>
+    </section>
+
+    <section class="concept-detail business-detail" id="business-concept" aria-labelledby="business-title" data-concept-detail="business">
+      <div class="business-layout shell">
+        <aside class="business-intro" data-reveal="slide"><p class="eyebrow">Concept 02 / Daily operations</p><h2 id="business-title">Small Business<br>Management System</h2><p>Bring everyday stock, sales, orders, customer records, and expenses into one proposed administration dashboard.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=Small%20Business%20System">Discuss a business system <span aria-hidden="true">↗</span></a></aside>
+        <div class="business-details" data-reveal="rise"><div class="business-row"><span>01</span><div><h3>Operations</h3><p>Inventory, orders, and customer records in one place.</p><small>Low-stock notifications are proposed.</small></div></div><div class="business-row"><span>02</span><div><h3>Sales &amp; expenses</h3><p>Review sales, expenses, and profit trends.</p><small>Representative values are labeled in the preview.</small></div></div><div class="business-row"><span>03</span><div><h3>Reporting</h3><p>Monthly performance summaries for day-to-day decisions.</p><small>Email notifications and reports are proposed features.</small></div></div></div>
+      </div>
+    </section>
+
+    <section class="concept-detail pc-detail" id="pc-health-concept" aria-labelledby="pc-title" data-concept-detail="pc">
+      <div class="pc-detail-inner shell">
+        <header class="pc-detail-heading" data-reveal="rise"><p class="eyebrow">Concept 03 / Expanded PC Tracker</p><h2 id="pc-title">Know what your<br>system is doing.</h2></header>
+        <div class="pc-detail-copy" data-reveal="slide"><p>An expanded PC Tracker concept for desktop-first monitoring and system health review.</p><p>CPU, GPU, memory, storage, temperature, utilization history, alerts, preferences, and downloadable reports are proposed features. They are not claims about the current PC Tracker.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=PC%20Health%20Dashboard">Discuss a PC health dashboard <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="beyond-contact shell" aria-labelledby="beyond-contact-title" data-reveal="media"><div class="contact-marquee" aria-hidden="true"><div class="contact-marquee-track"><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div></div></div><div class="beyond-contact-center"><p class="eyebrow">Have another direction in mind?</p><h2 id="beyond-contact-title">Let’s talk.</h2><a class="button button-primary" href="mailto:paulhoward1104@gmail.com">Email Paul <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="beyond-footer shell"><a class="wordmark" href="../">Paul Howard<span aria-hidden="true">.</span></a><a href="../">Back to portfolio <span aria-hidden="true">↗</span></a><span>Concept studies · <span id="year">2026</span></span></footer>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

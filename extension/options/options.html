@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Usage Tracker — Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <h1>Browser Usage Tracker</h1>
+      <p>Local settings. Nothing here is uploaded or synchronized.</p>
+    </header>
+
+    <form id="settings-form">
+      <section>
+        <h2>Tracking</h2>
+        <label class="check">
+          <input type="checkbox" id="paused">
+          <span>Pause tracking</span>
+        </label>
+        <p class="hint">While paused, no active time or domain totals are recorded.</p>
+
+        <label class="check">
+          <input type="checkbox" id="share">
+          <span>Share aggregate totals with the portfolio dashboard</span>
+        </label>
+        <p class="hint">Off by default. When enabled, only today’s active time, open tab count, normalized domains, and seven-day daily totals are available to the allowed portfolio origin. No URLs or titles are shared.</p>
+
+        <label class="check">
+          <input type="checkbox" id="incognito">
+          <span>Include Incognito tabs</span>
+        </label>
+        <p class="hint">You must also enable <strong>Allow in Incognito</strong> for this extension in Chrome’s extension details.</p>
+      </section>
+
+      <section>
+        <h2>Timing and retention</h2>
+        <label for="idle-threshold">Idle threshold (seconds)</label>
+        <input id="idle-threshold" type="number" min="15" max="300" step="15" required>
+        <p class="hint">Tracking pauses after this many seconds without input, or when the screen locks.</p>
+
+        <label for="retention">Keep daily totals for (days)</label>
+        <input id="retention" type="number" min="7" max="365" step="1" required>
+        <p class="hint">Older daily aggregates are removed automatically.</p>
+      </section>
+
+      <section>
+        <h2>Excluded domains</h2>
+        <label for="excluded">Never track these domains</label>
+        <textarea id="excluded" rows="5" placeholder="bank.example.com&#10;mail.example.com"></textarea>
+        <p class="hint">One domain per line or separated by commas. Full URLs are accepted; only the normalized domain is kept.</p>
+      </section>
+
+      <section class="limits">
+        <h2>What this extension does not do</h2>
+        <ul>
+          <li>Does not collect full URLs, page titles, passwords, form contents, or browsing history.</li>
+          <li>Does not count background tabs as active browsing time.</li>
+          <li>Does not monitor RAM, CPU, GPU, temperature, or storage.</li>
+          <li>Does not send data to a server or communicate with websites.</li>
+          <li>Cannot measure time before installation, while Chrome is closed, or while another app is focused.</li>
+        </ul>
+        <p class="hint">Active time is an estimate based on tab switches, window focus, and Chrome’s idle state. It is not a claim of exact browser process runtime.</p>
+      </section>
+
+      <div class="actions">
+        <button type="submit">Save settings</button>
+        <span id="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

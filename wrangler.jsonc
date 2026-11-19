@@ -1,0 +1,22 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "paul-howard-portfolioweb",
+	"main": "src/index.js",
+	"compatibility_date": "2026-11-14",
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS",
+		"run_worker_first": [
+			"/api/*",
+			"/admin*"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "paul-howard-portfolio-db",
+			"database_id": "0a51af0b-1532-4255-aa08-09bcafa47d3e",
+      "migrations_dir": "./migrations"
+		}
+	]
+}
