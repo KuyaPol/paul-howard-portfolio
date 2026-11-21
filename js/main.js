@@ -24,13 +24,4 @@ if (conceptList) {
   compactConcepts.addEventListener('change', syncConceptOrientation);
 }
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (!reduceMotion.matches) {
-  document.querySelectorAll('[data-hero-motion]').forEach((element, index) => {
-    const animation = element.animate(
-      [{ opacity: .86, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
-      { duration: 620, delay: index * 80, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
-    );
-    animation.onfinish = () => animation.cancel();
-  });
-}
+// [data-hero-motion] is now animated by js/motion.js (GSAP) on the concept page.

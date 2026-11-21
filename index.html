@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101110">
-  <meta name="description" content="Explore Paul Howard’s Python projects, technical skills, experience, and contact links.">
+  <meta name="description" content="Explore Paul Howard’s practical Python and browser projects, Windows support experience, capabilities, and contact links.">
   <title>Paul Howard | Developer Portfolio</title>
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paul Howard Portfolio">
   <meta property="og:title" content="Paul Howard | Developer Portfolio">
-  <meta property="og:description" content="Explore Paul Howard’s Python projects, technical skills, experience, and contact links.">
+  <meta property="og:description" content="Explore Paul Howard’s practical Python and browser projects, Windows support experience, capabilities, and contact links.">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Paul Howard | Developer Portfolio">
-  <meta name="twitter:description" content="Explore Paul Howard’s Python projects, technical skills, experience, and contact links.">
+  <meta name="twitter:description" content="Explore Paul Howard’s practical Python and browser projects, Windows support experience, capabilities, and contact links.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="space-stage" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="nav shell" aria-label="Main navigation">
       <a class="wordmark" href="#top" aria-label="Paul Howard, home">Paul Howard<span aria-hidden="true">.</span></a>
@@ -29,35 +33,42 @@
     </nav>
   </header>
 
-  <main class="shell">
+  <main class="shell" id="main-content">
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">Paul Howard · Developer portfolio</p>
         <h1 id="hero-title">I build useful<br><em>tools with code.</em></h1>
-        <p class="hero-intro">I’m Paul, a BSIT student and aspiring software developer focused on practical Python projects.</p>
+        <p class="hero-intro">I’m Paul, a BSIT student and aspiring software developer building practical Python and browser tools with careful attention to privacy, usability, and dependable behavior.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">Explore selected work <span aria-hidden="true">↗</span></a>
           <a class="button button-secondary" href="mailto:paulhoward1104@gmail.com">Email Paul</a>
         </div>
       </div>
-      <aside class="profile-panel" aria-label="Interactive developer profile">
-        <div class="panel-head"><span class="profile-title">About Me</span><span class="profile-hint">Select to explore</span></div>
-        <div class="profile-card about-interactive" role="button" tabindex="0" aria-expanded="false" aria-controls="profile-about-back" aria-label="About Me profile. Activate to reveal details." data-open="false">
-          <div class="profile-card-front">
-            <span class="profile-index">01 / PROFILE</span>
-            <p class="profile-statement">Practical projects.<br><em>Everyday problems.</em></p>
-            <span class="profile-card-cue">Tap, Enter, or Space to explore <span aria-hidden="true">↗</span></span>
+      <div class="profile-panel-stage">
+        <div class="profile-panel about-interactive" role="button" tabindex="0" aria-expanded="false" aria-controls="profile-about-back" data-open="false">
+          <div class="profile-panel-face profile-panel-front">
+            <div class="panel-head"><span class="profile-title">About Me</span><span class="profile-hint">Select to explore</span></div>
+            <div class="profile-card profile-card-front">
+              <span class="profile-index">01 / PROFILE</span>
+              <p class="profile-statement">Practical projects.<br><em>Everyday problems.</em></p>
+              <span class="profile-card-cue">Tap, Enter, or Space to explore <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="panel-foot"><span>LEARNING BY BUILDING</span><span>PYTHON / WINDOWS</span></div>
           </div>
-          <div class="profile-about-back" id="profile-about-back" aria-hidden="true" inert>
-            <span class="profile-index">ABOUT ME / EXPERIENCE</span>
-            <p>I’m developing my technical skills through practical Python projects and desktop utilities. My background also includes Windows support, administration, video editing, and community management.</p>
-            <ul class="profile-facts">
-              <li>BSIT studies</li><li>Python projects</li><li>Windows support</li><li>Administration</li><li>Video editing</li><li>Community management</li>
-            </ul>
+          <div class="profile-panel-face profile-panel-back" id="profile-about-back" aria-hidden="true" inert>
+            <div class="panel-head"><span class="profile-title">About Me</span><span class="profile-hint">Select to explore</span></div>
+            <div class="profile-card profile-about-back">
+              <span class="profile-index">ABOUT ME / EXPERIENCE</span>
+              <p>I’m developing my technical skills through practical Python projects and desktop utilities. My background also includes Windows support, administration, video editing, and community management.</p>
+              <ul class="profile-facts">
+                <li>BSIT studies</li><li>Python projects</li><li>Windows support</li><li>Administration</li><li>Video editing</li><li>Community management</li>
+              </ul>
+              <span class="profile-card-cue">Tap, Enter, or Space to return <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="panel-foot"><span>LEARNING BY BUILDING</span><span>PYTHON / WINDOWS</span></div>
           </div>
         </div>
-        <div class="panel-foot"><span>LEARNING BY BUILDING</span><span>PYTHON / WINDOWS</span></div>
-      </aside>
+      </div>
     </section>
 
     <section class="project-section" id="projects" aria-label="Selected projects">
@@ -69,9 +80,14 @@
           </div>
           <div class="tracker-heading-actions">
             <span class="tracker-connection" id="tracker-connection" data-state="checking" aria-live="polite">Checking…</span>
-            <a class="button button-secondary project-top-link" href="https://github.com/KuyaPol/PC-Tracker-Widget" target="_blank" rel="noopener noreferrer">Original Python project <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary project-top-link" href="https://github.com/KuyaPol/PC-Tracker-Widget" target="_blank" rel="noopener noreferrer">Separate Python project <span aria-hidden="true">↗</span></a>
           </div>
         </header>
+
+        <div class="project-description project-brief" data-reveal="slide">
+          <p class="project-summary">A local-first Manifest V3 browser extension and live dashboard for active browsing time, open tabs, and most-used domains. A consent-gated bridge sends aggregated totals to this page only; no URLs, titles, history, or server uploads.</p>
+          <p class="project-meta">JavaScript <span>·</span> Manifest V3 <span>·</span> Local-first analytics</p>
+        </div>
 
         <div class="tracker-dashboard" id="tracker-dashboard" hidden>
           <div class="tracker-dashboard-top">
@@ -137,11 +153,6 @@
           <!-- To use a future store listing, replace the href below and remove data-tutorial-step. -->
           <a class="button button-secondary tracker-add-button" id="tracker-add-button" href="#tracker-install-guide" data-tutorial-step="2">Add Browser Tracker <span aria-hidden="true">→</span></a>
         </div>
-
-        <div class="project-description" data-reveal="slide">
-          <p class="project-summary">A local-first browser extension and live analytics dashboard for active browsing time, open tabs, and the sites you use most. Domain-level totals only; nothing leaves your device.</p>
-          <p class="project-meta">JavaScript <span>·</span> Manifest V3 <span>·</span> Local-first analytics</p>
-        </div>
       </article>
 
       <article class="project project-voice" aria-labelledby="voice-title">
@@ -165,20 +176,21 @@
       <div class="about-support">
         <article><h3>BSIT studies</h3><p>Developing technical skills through study and practical work.</p></article>
         <article><h3>Python projects</h3><p>Building desktop utilities around everyday computer problems.</p></article>
-        <article><h3>About Me</h3><p>Explore the interactive profile card above for more personal context.</p></article>
+        <article><h3>Broader experience</h3><p>Windows support, administration, video editing, and community management shape how I approach projects.</p></article>
       </div>
     </section>
 
     <section class="capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
       <header class="capabilities-heading">
         <p class="eyebrow">Capabilities</p>
-        <h2 id="capabilities-title">Technical capabilities</h2>
-        <p>Technical skills, kept clear and easy to scan.</p>
+        <h2 id="capabilities-title">Technical and creative capabilities</h2>
+        <p>Practical skills, kept clear and easy to scan.</p>
       </header>
       <ol class="capability-list">
-        <li><span class="capability-number">01</span><h3>Development</h3><p>Python <i>/</i> CustomTkinter <i>/</i> Git</p></li>
+        <li><span class="capability-number">01</span><h3>Development</h3><p>Python <i>/</i> JavaScript <i>/</i> Manifest V3 <i>/</i> CustomTkinter <i>/</i> Git</p></li>
         <li><span class="capability-number">02</span><h3>Windows support</h3><p>PowerShell <i>/</i> Windows troubleshooting <i>/</i> Desktop software configuration</p></li>
-        <li class="capability-ai-tools"><span class="capability-number">03</span><h3>AI Tools</h3><p>ChatGPT (GPT) <i>/</i> Claude <i>/</i> Perplexity <span class="capability-note">Used for coding and debugging, technical research and documentation, problem-solving and brainstorming, development planning, and workflow efficiency.</span></p></li>
+        <li><span class="capability-number">03</span><h3>Creative &amp; administrative</h3><p>Video editing <i>/</i> Interactive concept studies <i>/</i> Documentation <i>/</i> Community management</p></li>
+        <li class="capability-ai-tools"><span class="capability-number">04</span><h3>AI Tools</h3><p>ChatGPT (GPT) <i>/</i> Claude <i>/</i> Perplexity <span class="capability-note">Used for coding and debugging, technical research and documentation, problem-solving and brainstorming, development planning, and workflow efficiency.</span></p></li>
       </ol>
     </section>
 
@@ -199,7 +211,7 @@
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
       <p class="eyebrow">Get in touch</p>
       <h2 id="contact-title">Let’s<br>connect.</h2>
-      <p>For questions about my projects or to get in touch.</p>
+      <p>For questions about my projects, employment, or client opportunities, use the links below.</p>
       <div class="contact-links">
         <a class="button button-primary" href="mailto:paulhoward1104@gmail.com">Email Paul <span aria-hidden="true">↗</span></a>
         <a class="button button-secondary" href="https://github.com/KuyaPol" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
@@ -209,10 +221,11 @@
 
     <section class="beyond-entry" aria-labelledby="beyond-entry-title">
       <div><p class="eyebrow">More ideas, built with code</p><h2 id="beyond-entry-title">Not enough? Explore what else I can build.</h2></div>
-      <a class="button button-primary" href="beyond-the-portfolio/">Explore concepts <span aria-hidden="true">↗</span></a>
+      <a class="button button-primary" href="beyond-the-portfolio/" data-page-exit="to-beyond">Explore concepts <span aria-hidden="true">↗</span></a>
     </section>
+  </main>
 
-    <div class="tracker-modal" id="tracker-tutorial" hidden>
+  <div class="tracker-modal" id="tracker-tutorial" hidden>
       <div class="tracker-modal-overlay" data-tutorial-close></div>
       <div class="tracker-modal-panel" role="dialog" aria-modal="true" aria-labelledby="tracker-tutorial-title" aria-describedby="tracker-tutorial-intro" tabindex="-1">
         <button class="tracker-modal-close" type="button" data-tutorial-close aria-label="Close tutorial">×</button>
@@ -283,14 +296,13 @@
       </div>
     </div>
 
-    <footer class="site-footer">
-      <nav class="footer-links" aria-label="Footer navigation">
+  <footer class="site-footer shell">
+    <nav class="footer-links" aria-label="Footer navigation">
         <a href="#top">Home</a><a href="#projects">Work</a><a href="#capabilities">Capabilities</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
       </nav>
       <div class="footer-meta"><span>© <span id="year">2026</span> Paul Howard</span><span>BSIT student / Aspiring software developer</span><a href="#top">Back to top ↑</a></div>
       <p class="footer-wordmark" aria-label="Paul Howard">Paul Howard</p>
-    </footer>
-  </main>
-  <script src="js/app.js" defer></script>
+  </footer>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

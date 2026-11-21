@@ -1,29 +1,24 @@
-const aboutCard = document.querySelector('.about-interactive');
+const profilePanel = document.querySelector('.profile-panel.about-interactive');
 
-if (aboutCard) {
-  const profilePanel = aboutCard.closest('.profile-panel');
-  const aboutBack = aboutCard.querySelector('.profile-about-back');
-  const toggleAboutCard = () => {
-    const isOpen = aboutCard.dataset.open === 'true';
-    const nextOpen = !isOpen;
-    aboutCard.dataset.open = String(nextOpen);
+if (profilePanel) {
+  const frontFace = profilePanel.querySelector('.profile-panel-front');
+  const backFace = profilePanel.querySelector('.profile-panel-back');
+
+  const toggleProfilePanel = () => {
+    const nextOpen = profilePanel.dataset.open !== 'true';
     profilePanel.dataset.open = String(nextOpen);
-    aboutCard.setAttribute('aria-expanded', String(nextOpen));
-    aboutCard.setAttribute(
-      'aria-label',
-      nextOpen
-        ? 'Profile code card. About Me information revealed. Activate to return.'
-        : 'Profile code card. Activate to reveal About Me information.'
-    );
-    aboutBack.setAttribute('aria-hidden', String(!nextOpen));
-    aboutBack.inert = !nextOpen;
+    profilePanel.setAttribute('aria-expanded', String(nextOpen));
+    frontFace.setAttribute('aria-hidden', String(nextOpen));
+    frontFace.inert = nextOpen;
+    backFace.setAttribute('aria-hidden', String(!nextOpen));
+    backFace.inert = !nextOpen;
   };
 
-  aboutCard.addEventListener('click', toggleAboutCard);
-  aboutCard.addEventListener('keydown', event => {
+  profilePanel.addEventListener('click', toggleProfilePanel);
+  profilePanel.addEventListener('keydown', event => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      if (!event.repeat) toggleAboutCard();
+      if (!event.repeat) toggleProfilePanel();
     }
   });
 }

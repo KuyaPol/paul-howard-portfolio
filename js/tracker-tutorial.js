@@ -7,6 +7,15 @@ if (modal) {
   const overlay = modal.querySelector('.tracker-modal-overlay');
   const steps = [...modal.querySelectorAll('.tutorial-step')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const backgroundRegions = [...document.querySelectorAll('.site-header, main, .site-footer, .beyond-footer')];
+
+  const setBackgroundInert = value => {
+    backgroundRegions.forEach(region => {
+      region.inert = value;
+      if (value) region.setAttribute('aria-hidden', 'true');
+      else region.removeAttribute('aria-hidden');
+    });
+  };
 
   let isOpen = false;
   let restoreFocusTo = null;
@@ -43,6 +52,7 @@ if (modal) {
     modal.removeAttribute('data-closing');
     modal.hidden = false;
     document.body.classList.add('tracker-modal-open');
+    setBackgroundInert(true);
     isOpen = true;
 
     if (step) goToStep(step);
@@ -57,6 +67,7 @@ if (modal) {
       modal.hidden = true;
       modal.removeAttribute('data-closing');
       document.body.classList.remove('tracker-modal-open');
+      setBackgroundInert(false);
       if (restoreFocusTo && typeof restoreFocusTo.focus === 'function') {
         restoreFocusTo.focus();
       }
@@ -129,5 +140,6 @@ if (modal) {
     modal.hidden = true;
     modal.removeAttribute('data-closing');
     document.body.classList.remove('tracker-modal-open');
+    setBackgroundInert(false);
   });
 }

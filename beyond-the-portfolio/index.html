@@ -4,12 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101110">
-  <meta name="description" content="Explore proposed software concepts Paul Howard could build.">
+  <meta name="description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
   <title>Beyond the Portfolio | Paul Howard</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paul Howard Portfolio">
+  <meta property="og:title" content="Beyond the Portfolio | Paul Howard">
+  <meta property="og:description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Beyond the Portfolio | Paul Howard">
+  <meta name="twitter:description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body class="beyond-page" id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="space-stage" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="nav shell" aria-label="Main navigation">
       <a class="wordmark" href="../" aria-label="Paul Howard, portfolio">Paul Howard<span aria-hidden="true">.</span></a>
@@ -19,7 +29,7 @@
       </div>
     </nav>
   </header>
-  <main class="beyond-main">
+  <main class="beyond-main" id="main-content">
     <section class="beyond-hero shell" aria-labelledby="beyond-title">
       <p class="eyebrow">Paul Howard · Concept studies</p>
       <div class="beyond-hero-main">
@@ -30,16 +40,16 @@
         </div>
       </div>
       <p class="beyond-wordmark" aria-hidden="true">PAUL HOWARD</p>
-      <div class="beyond-rule"><span>INDEPENDENT DEVELOPER</span><span>CONCEPT STUDIES / 2026</span></div>
+      <div class="beyond-rule"><span>SOFTWARE CONCEPTS / PRACTICAL DESIGN</span><span>CONCEPT STUDIES / 2026</span></div>
     </section>
 
     <section class="concept-overview shell" id="concepts" aria-labelledby="concepts-title">
       <header class="concept-overview-heading" data-reveal="rise"><p class="eyebrow">Three directions / Proposed concepts</p><h2 id="concepts-title">Choose a concept<br>to explore.</h2></header>
       <div class="concept-stage">
         <div class="concept-selector" role="tablist" aria-label="Choose a software concept" aria-orientation="vertical">
-          <button class="concept-tab" id="tab-finance" role="tab" aria-selected="true" aria-controls="concept-panel-finance" tabindex="0" data-concept="finance"><span>01</span><span>Personal finance<br>&amp; budgets</span><span aria-hidden="true">↗</span></button>
-          <button class="concept-tab" id="tab-business" role="tab" aria-selected="false" aria-controls="concept-panel-business" tabindex="-1" data-concept="business"><span>02</span><span>Small business<br>operations</span><span aria-hidden="true">↗</span></button>
-          <button class="concept-tab" id="tab-pc" role="tab" aria-selected="false" aria-controls="concept-panel-pc" tabindex="-1" data-concept="pc"><span>03</span><span>PC performance<br>&amp; system health</span><span aria-hidden="true">↗</span></button>
+          <button class="concept-tab" type="button" id="tab-finance" role="tab" aria-selected="true" aria-controls="concept-panel-finance" tabindex="0" data-concept="finance"><span>01</span><span>Personal finance<br>&amp; budgets</span><span aria-hidden="true">↗</span></button>
+          <button class="concept-tab" type="button" id="tab-business" role="tab" aria-selected="false" aria-controls="concept-panel-business" tabindex="-1" data-concept="business"><span>02</span><span>Small business<br>operations</span><span aria-hidden="true">↗</span></button>
+          <button class="concept-tab" type="button" id="tab-pc" role="tab" aria-selected="false" aria-controls="concept-panel-pc" tabindex="-1" data-concept="pc"><span>03</span><span>PC performance<br>&amp; system health</span><span aria-hidden="true">↗</span></button>
         </div>
         <div class="concept-preview-shell" id="concept-preview" data-concept="finance" data-reveal="media">
           <div class="preview-heading"><div><span class="preview-label" data-preview-label>CONCEPT 01 / PERSONAL FINANCE</span><h3 data-preview-title>Money, with a clearer view.</h3></div><span class="preview-status">ILLUSTRATIVE PREVIEW · SAMPLE DATA</span></div>
@@ -86,7 +96,7 @@
 
     <section class="beyond-contact shell" aria-labelledby="beyond-contact-title" data-reveal="media"><div class="contact-marquee" aria-hidden="true"><div class="contact-marquee-track"><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div></div></div><div class="beyond-contact-center"><p class="eyebrow">Have another direction in mind?</p><h2 id="beyond-contact-title">Let’s talk.</h2><a class="button button-primary" href="mailto:paulhoward1104@gmail.com">Email Paul <span aria-hidden="true">↗</span></a></div></section>
   </main>
-  <footer class="beyond-footer shell"><a class="wordmark" href="../">Paul Howard<span aria-hidden="true">.</span></a><a href="../">Back to portfolio <span aria-hidden="true">↗</span></a><span>Concept studies · <span id="year">2026</span></span></footer>
-  <script src="../js/app.js" defer></script>
+  <footer class="beyond-footer shell"><a class="wordmark" href="../">Paul Howard<span aria-hidden="true">.</span></a><a href="../" data-page-exit="to-main">Back to portfolio <span aria-hidden="true">↗</span></a><span>Concept studies · <span id="year">2026</span></span></footer>
+  <script type="module" src="../js/app.js"></script>
 </body>
 </html>

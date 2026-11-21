@@ -4,7 +4,6 @@
   .nav-links { justify-self: end; gap: clamp(1rem, 2vw, 1.8rem); }
   .hero { min-height: 600px; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 2rem; }
   .project-description { flex-direction: column; gap: .8rem; }
-  .experience-section { gap: 3rem; }
 }
 
 @media (max-width: 760px) {
@@ -19,7 +18,7 @@
   .hero h1 { font-size: var(--text-h2); }
   .hero-intro { margin-inline: auto; }
   .hero-actions { justify-content: center; }
-  .profile-panel { width: 100%; }
+  .profile-panel-stage { width: 100%; }
   .profile-card { min-height: 290px; }
   .project-heading { align-items: flex-start; flex-direction: column; gap: 1rem; }
   .project-preview { aspect-ratio: 35 / 24; }
@@ -27,8 +26,20 @@
   .tracker-metrics { grid-template-columns: 1fr 1fr; }
   .tracker-metric-primary { grid-column: 1 / -1; }
   .tracker-panels { grid-template-columns: 1fr; }
-  .tracker-try { align-items: stretch; flex-direction: column; }
-  .tracker-try-button, .tracker-add-button { width: 100%; margin-left: 0; }
+  .tracker-try {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .tracker-try-button,
+  .tracker-try p,
+  .tracker-add-button {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-left: 0;
+  }
+  .tracker-try-button {
+    justify-content: center;
+  }
   .tracker-modal { padding: 0; }
   .tracker-modal-panel { width: 100%; max-height: 100vh; border: 0; }
   .tracker-modal-head { padding-right: 4rem; }
@@ -83,7 +94,7 @@
   .beyond-hero h1 { font-size: var(--text-h1); }
   .beyond-hero-aside { max-width: 42rem; }
   .concept-stage { grid-template-columns: 1fr; }
-  .concept-selector { order: 2; flex-direction: row; overflow-x: auto; }
+  .concept-selector { order: 2; flex-direction: row; justify-content: flex-start; overflow-x: auto; }
   .concept-tab { min-width: 190px; min-height: 96px; flex: 1; grid-template-columns: 1.7rem 1fr; gap: .5rem; }
   .concept-tab > span:nth-child(2) { font-size: var(--text-body); }
   .concept-tab > span:last-child { display: none; }
@@ -126,7 +137,6 @@
   .business-stats strong { font-size: var(--text-body); }
   .inventory-table p { grid-template-columns: 1fr auto; }
   .inventory-table small { display: none; }
-  .pc-core { grid-template-columns: minmax(90px, .7fr) minmax(0, 1.3fr); gap: .8rem; padding-inline: 0; }
   .pc-primary-metric { min-height: 140px; }
   .pc-core { grid-template-columns: 1fr; gap: .9rem; }
   .pc-primary-metric { width: 100%; }

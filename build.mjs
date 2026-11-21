@@ -10,17 +10,20 @@ const output = resolve(root, 'public');
 rmSync(output, { recursive: true, force: true });
 mkdirSync(output, { recursive: true });
 
-for (const entry of ['index.html', 'beyond-the-portfolio', 'css', 'js', 'fonts']) {
+for (const entry of ['index.html', 'beyond-the-portfolio', 'css', 'fonts', 'favicon.svg']) {
   cpSync(resolve(root, entry), resolve(output, entry), { recursive: true });
 }
 
 await build({
   entryPoints: [resolve(root, 'js/app.js')],
-  outfile: resolve(output, 'js/app.js'),
+  outdir: resolve(output, 'js'),
   bundle: true,
-  format: 'iife',
+  format: 'esm',
+  splitting: true,
   target: ['es2020'],
   minify: true,
+  entryNames: 'app',
+  chunkNames: 'chunk-[name]-[hash]',
 });
 
 console.log('Built static site into public/');

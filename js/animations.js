@@ -29,25 +29,8 @@ export function initializeAnimations() {
   };
   reduced.addEventListener('change', onReducedChange);
 
-  const heroItems = [
-    document.querySelector('.hero .eyebrow'),
-    document.querySelector('.hero h1'),
-    document.querySelector('.hero-intro'),
-    document.querySelector('.hero-actions'),
-    document.querySelector('.profile-panel'),
-  ].filter(Boolean);
-  if (!reduced.matches && document.visibilityState !== 'hidden') {
-    heroItems.forEach((element, index) => {
-      const animation = element.animate(
-        [
-          { opacity: .82, transform: 'translateY(10px)' },
-          { opacity: 1, transform: 'none' },
-        ],
-        { duration: 560, delay: index * 70, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
-      );
-      animation.onfinish = () => animation.cancel();
-    });
-  }
+  // Hero entrance and scroll-linked motion are owned by js/motion.js (GSAP).
+  // This module only coordinates the [data-reveal] IntersectionObserver system.
 
   const reveals = [...document.querySelectorAll('[data-reveal]')];
   const candidates = reveals.filter(element => {

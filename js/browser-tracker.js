@@ -168,7 +168,7 @@ if (root) {
           : ['checking', 'Checking…'];
 
     el.badge.dataset.state = badge[0];
-    el.badge.textContent = badge[1];
+    if (el.badge.textContent !== badge[1]) el.badge.textContent = badge[1];
     el.live.dataset.active = String(live && status === 'live');
     el.status.textContent = badge[1];
     el.noticeText.textContent = 'Portfolio sharing is off. Enable it in the extension popup to see your own statistics.';

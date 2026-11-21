@@ -162,6 +162,9 @@ export function initializeBeyondConcepts() {
     if (previewTitle) previewTitle.textContent = titles[tab.dataset.concept];
     if (previewShell) previewShell.dataset.concept = tab.dataset.concept;
     if (detailLink) detailLink.href = `#${detailIds[tab.dataset.concept]}`;
+    window.dispatchEvent(new CustomEvent('conceptchange', {
+      detail: { concept: tab.dataset.concept, index: nextIndex },
+    }));
     if (focus) tab.focus();
     if (animate) {
       const visibleScreen = screens.find(screen => screen.dataset.screen === tab.dataset.concept);
