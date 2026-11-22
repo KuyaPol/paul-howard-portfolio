@@ -52,11 +52,9 @@
     {
       label: "COMPLETION",
       title: "You’re oriented",
-      copy: "That’s the full route. Replay Site Tour stays in the navigation whenever you want it again.",
+      copy: "That’s the full route. Replay Site Tour stays in the footer Site Guide—or the Site menu on smaller screens—whenever you want it again.",
       scene: null,
-      target: () => visible(document.querySelector("[data-tour-replay]"))
-        ? document.querySelector("[data-tour-replay]")
-        : document.querySelector(".scene-progress")
+      target: () => document.querySelector("[data-tour-replay]") || document.querySelector(".scene-progress")
     }
   ];
 
@@ -91,6 +89,27 @@
     if (rect.width <= 0 || rect.height <= 0) return false;
     const style = window.getComputedStyle(element);
     return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) > 0.05;
+  };
+
+  let tourOpenedMenu = false;
+
+  const prepareTarget = (target) => {
+    const nav = window.PortfolioNav;
+    const compactMenu = document.querySelector(".compact-links");
+    const inCompactMenu = !!(compactMenu && target && compactMenu.contains(target));
+
+    if (!nav || !inCompactMenu) {
+      if (tourOpenedMenu && nav?.isOpen?.()) {
+        nav.close();
+        tourOpenedMenu = false;
+      }
+      return;
+    }
+
+    if (!nav.isOpen?.()) {
+      nav.open();
+      tourOpenedMenu = true;
+    }
   };
 
   const readPreference = () => {
@@ -219,6 +238,7 @@
 
   const renderStep = (index) => {
     const step = STEPS[index];
+    const target = step.target();
     currentStep = index;
     count.textContent = `${pad(index + 1)} / ${pad(STEPS.length)}`;
     title.textContent = step.title;
@@ -228,12 +248,16 @@
     segments.forEach((segment, i) => segment.classList.toggle("is-done", i <= index));
     live.textContent = `${step.label}. Step ${index + 1} of ${STEPS.length}. ${step.title} ${step.copy}`;
     writePreference("in_progress", index);
+    prepareTarget(target);
     place();
     /* Scene swaps animate for 720ms; re-measure once the DOM settles so the
        spotlight and panel never sit at the outgoing scene's coordinates. */
     window.clearTimeout(placeTimer);
     placeTimer = window.setTimeout(() => {
-      if (!overlay.hidden) place();
+      if (!overlay.hidden) {
+        prepareTarget(STEPS[currentStep].target());
+        place();
+      }
     }, 800);
   };
 
@@ -244,7 +268,10 @@
     if (token !== sequence || overlay.hidden) return;
     renderStep(index);
     window.requestAnimationFrame(() => {
-      if (token === sequence && !overlay.hidden) place();
+      if (token === sequence && !overlay.hidden) {
+        prepareTarget(STEPS[index].target());
+        place();
+      }
     });
   };
 
@@ -271,10 +298,16 @@
     overlay.hidden = true;
     document.body.classList.remove("tour-active");
     emitTour(false);
+
+    if (tourOpenedMenu) {
+      window.PortfolioNav?.close?.();
+      tourOpenedMenu = false;
+    }
+
     writePreference(status, currentStep);
-    const focusTarget = status === "completed" || !visible(returnFocus)
-      ? document.querySelector("[data-tour-replay]")
-      : returnFocus;
+    const replay = document.querySelector("[data-tour-replay]");
+    const fallback = visible(replay) ? replay : document.querySelector(".menu-toggle");
+    const focusTarget = status === "completed" || !visible(returnFocus) ? fallback : returnFocus;
     if (visible(focusTarget)) focusTarget.focus({ preventScroll: true });
     returnFocus = null;
   };
@@ -369,6 +402,12 @@
   window.addEventListener("resize", () => {
     if (!overlay.hidden) place();
   }, { passive: true });
+
+  window.addEventListener("prototype:nav-mode", () => {
+    if (overlay.hidden) return;
+    prepareTarget(STEPS[currentStep].target());
+    place();
+  });
 
   window.addEventListener("pagehide", () => {
     hideWelcome();

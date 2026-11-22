@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/typography.css?v=13">
-  <link rel="stylesheet" href="../css/prototype.css?v=22">
+  <link rel="stylesheet" href="../css/prototype.css?v=23">
   <link rel="stylesheet" href="../css/site-fade.css?v=1">
   <link rel="stylesheet" href="../css/about.css?v=2">
   <script>document.documentElement.classList.add("js");</script>
@@ -21,14 +21,13 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
-    <nav class="nav shell" aria-label="Main navigation">
+    <nav class="nav shell" data-responsive-nav aria-label="Main navigation">
       <a class="wordmark" href="../index.html" aria-label="Paul Howard, portfolio home">
         <span class="wordmark-mark" aria-hidden="true"></span>
         <span>PAUL HOWARD</span>
         <span class="wordmark-suffix" aria-hidden="true">/ PH—002</span>
       </a>
-      <p class="nav-signal" aria-hidden="true">PROFILE / EXPANDED</p>
-      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-links">Menu</button>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-links" aria-label="Open navigation menu">Menu</button>
       <div class="nav-links" id="primary-links">
         <a href="../index.html#scene-hero">Signal</a>
         <a href="../index.html#scene-work">Work</a>
@@ -186,6 +185,7 @@
     </footer>
   </main>
 
-  <script src="../js/site-fade.js?v=1"></script>
+  <script src="../js/nav.js?v=1"></script>
+  <script src="../js/site-fade.js?v=2"></script>
 </body>
 </html>

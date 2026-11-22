@@ -54,29 +54,7 @@
     }, 220);
   });
 
-  const toggle = document.querySelector("[data-menu-toggle]");
-  const menu = document.getElementById(toggle?.getAttribute("aria-controls") || "");
-
-  if (toggle && menu) {
-    const closeMenu = () => {
-      toggle.setAttribute("aria-expanded", "false");
-      menu.classList.remove("is-open");
-    };
-
-    toggle.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      menu.classList.toggle("is-open", !isOpen);
-    });
-
-    menu.addEventListener("click", (event) => {
-      if (event.target.closest("a")) closeMenu();
-    });
-
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
-    });
-  }
+  /* Responsive navigation lives in js/nav.js so it can measure content width. */
 
   window.addEventListener("pageshow", (event) => {
     if (!event.persisted) return;

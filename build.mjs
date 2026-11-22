@@ -23,6 +23,7 @@ for (const entry of [
   'favicon.svg',
   'assets',
   'docs',
+  'js/nav.js',
   'js/prototype.js',
   'js/prototype-scene.js',
   'js/visitor-tour.js',

@@ -67,26 +67,7 @@
     emit("prototype:overlay", { active });
   };
 
-  /* Mobile navigation */
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navLinks = document.getElementById("primary-links");
-
-  const setMenu = (open) => {
-    if (!menuToggle || !navLinks) return;
-    menuToggle.setAttribute("aria-expanded", String(open));
-    menuToggle.textContent = open ? "Close" : "Menu";
-    navLinks.classList.toggle("is-open", open);
-  };
-
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
-    });
-
-    navLinks.addEventListener("click", (event) => {
-      if (event.target.closest("a")) setMenu(false);
-    });
-  }
+  /* Responsive navigation lives in js/nav.js so it can measure content width. */
 
   /* Overlay dialogs keep long content out of the fixed scenes and pause the background. */
   let lastDialogTrigger = null;
@@ -178,14 +159,6 @@
       focusSafely(lastDialogTrigger);
       lastDialogTrigger = null;
     });
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") return;
-    if (menuToggle && menuToggle.getAttribute("aria-expanded") === "true") {
-      setMenu(false);
-      focusSafely(menuToggle);
-    }
   });
 
   /* Scene architecture: a fixed stage with stacked, crossfading scenes.
@@ -403,7 +376,7 @@
       if (!sceneKeys.has(event.key) || event.repeat) return;
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (openDialogs()) return;
-      if (menuToggle?.getAttribute("aria-expanded") === "true") return;
+      if (window.PortfolioNav?.isOpen?.()) return;
 
       const target = event.target instanceof Element ? event.target : null;
       if (target?.closest("input, textarea, select, [contenteditable='true']")) return;
@@ -441,7 +414,7 @@
       const index = scenes.findIndex((scene) => scene.id === id);
       if (index < 0) return;
       event.preventDefault();
-      setMenu(false);
+      window.PortfolioNav?.close?.();
       setHash(id, "push");
       goToScene(index, { moveFocus: true, historyMode: "none" });
     });

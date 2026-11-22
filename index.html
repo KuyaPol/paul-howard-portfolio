@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/typography.css?v=13">
-  <link rel="stylesheet" href="css/prototype.css?v=22">
+  <link rel="stylesheet" href="css/prototype.css?v=23">
   <link rel="stylesheet" href="css/site-fade.css?v=1">
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -20,22 +20,27 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
-    <nav class="nav shell" aria-label="Main navigation">
-      <a class="wordmark" href="#scene-hero" aria-label="Paul Howard, portfolio home">
+    <nav class="nav shell has-compact-menu" data-responsive-nav aria-label="Main navigation">
+      <a class="wordmark" href="#scene-hero" aria-label="Paul Howard, portfolio home / SIGNAL">
         <span class="wordmark-mark" aria-hidden="true"></span>
         <span>PAUL HOWARD</span>
         <span class="wordmark-suffix" aria-hidden="true">/ PH—001</span>
       </a>
-      <p class="nav-signal" aria-hidden="true">SIGNAL / ACTIVE</p>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">Menu</button>
-      <div class="nav-links" id="primary-links">
-        <a href="#scene-hero">Signal</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="compact-links" aria-label="Open navigation menu">Menu</button>
+      <div class="nav-links" id="desktop-links" aria-label="Primary navigation">
         <a href="#scene-work">Work</a>
         <a href="#scene-capabilities">Capabilities</a>
         <a href="#scene-profile">Profile</a>
         <a href="#scene-contact">Contact</a>
         <a class="nav-lab" href="beyond-the-portfolio/">Beyond <span aria-hidden="true">↗</span></a>
-        <button class="nav-tour-replay" type="button" data-tour-replay>Replay Site Tour</button>
+      </div>
+      <div class="compact-links" id="compact-links" aria-label="Site menu">
+        <a href="#scene-hero">Signal / Home</a>
+        <a href="#scene-work">Work</a>
+        <a href="#scene-capabilities">Capabilities</a>
+        <a href="#scene-profile">Profile</a>
+        <a href="#scene-contact">Contact</a>
+        <a class="nav-lab" href="beyond-the-portfolio/">Beyond <span aria-hidden="true">↗</span></a>
       </div>
     </nav>
   </header>
@@ -232,6 +237,13 @@
     </section>
   </main>
 
+  <footer class="site-guide-bar" aria-label="Site guide">
+    <span class="site-guide-label">HELP / SITE GUIDE</span>
+    <span class="site-guide-actions" data-tour-replay-host>
+      <button class="site-guide-replay" type="button" data-tour-replay>Replay Site Tour</button>
+    </span>
+  </footer>
+
   <section class="tour-welcome" id="tour-welcome" role="dialog" aria-modal="false" aria-labelledby="tour-welcome-title" aria-describedby="tour-welcome-copy" hidden>
     <button class="tour-welcome-close" type="button" data-tour-no aria-label="Dismiss welcome">×</button>
     <h2 id="tour-welcome-title">Hello, Visitor.</h2>
@@ -321,8 +333,9 @@
     </div>
   </dialog>
 
-  <script src="js/prototype.js?v=3"></script>
-  <script src="js/visitor-tour.js?v=1"></script>
-  <script src="js/site-fade.js?v=1"></script>
+  <script src="js/nav.js?v=1"></script>
+  <script src="js/prototype.js?v=4"></script>
+  <script src="js/visitor-tour.js?v=2"></script>
+  <script src="js/site-fade.js?v=2"></script>
 </body>
 </html>
