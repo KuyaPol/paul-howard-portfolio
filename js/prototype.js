@@ -592,7 +592,11 @@
       emit("prototype:network-restore", restoreDetail);
 
       if (params.get("focus") === "1") {
-        window.requestAnimationFrame(() => focusSafely(node));
+        /* The initial fragment navigation can reset focus to BODY after the
+           first animation frame. Wait for load so the restored node keeps it. */
+        const focusRestoredNode = () => window.requestAnimationFrame(() => focusSafely(node));
+        if (document.readyState === "complete") focusRestoredNode();
+        else window.addEventListener("load", focusRestoredNode, { once: true });
       }
     };
 

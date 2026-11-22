@@ -1087,76 +1087,147 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
   const buildProfile = () => {
     const group = createGroup("profile");
 
-    const widths = [2.35, 1.75, 2.05, 1.35, 1.85, 1.1];
-    const depths = [1.25, 1.0, 1.15, 0.85, 1.0, 0.7];
-    const slabGeometry = keep(new THREE.BoxGeometry(1, 0.34, 1));
-    const slabMaterial = metalMaterial(group, 0x1a2631, { metalness: 0.9, roughness: 0.26 });
-    const slabs = makeInstances(group, slabGeometry, slabMaterial, widths.length, (dummy, i) => {
-      dummy.position.set((i % 2 ? 0.12 : -0.1), (i - 2.5) * 0.58, (i % 3 - 1) * 0.18);
-      dummy.rotation.set((i % 2 ? 0.04 : -0.03), (i % 2 ? 0.22 : -0.18), (i % 3 - 1) * 0.035);
-      dummy.scale.set(widths[i], 1, depths[i]);
-    });
-
-    const glassGeometry = keep(new THREE.CylinderGeometry(0.11, 0.11, 4.25, quality.detail > 0.7 ? 16 : 10));
-    const spine = new THREE.Mesh(
-      glassGeometry,
-      glassMaterial(group, LIME, { transmission: 0.88, opacity: 0.5, thickness: 1.6 })
+    /* Phase 17 — IDENTITY CORE / CONNECTED EXPERIENCE.
+       One translucent shell, one lit core, four instanced modules, and thin
+       instanced links. Every moving part updates existing buffers only. */
+    const shell = new THREE.Mesh(
+      keep(new THREE.IcosahedronGeometry(0.86, quality.detail > 0.7 ? 2 : 1)),
+      glassMaterial(group, NETWORK_CYAN, {
+        transmission: 0.84, opacity: 0.24, thickness: 1.7, roughness: 0.16
+      })
     );
-    spine.rotation.z = 0.08;
-    group.add(spine);
+    group.add(shell);
 
-    const accentGeometry = keep(new THREE.BoxGeometry(0.52, 0.018, 0.018));
-    const accents = makeInstances(group, accentGeometry, accentMaterial(group, VIOLET, 0.72), widths.length, (dummy, i) => {
-      dummy.position.set((i % 2 ? 0.12 : -0.1) - 0.35, (i - 2.5) * 0.58 - 0.1, (i % 3 - 1) * 0.18 + 0.62);
-      dummy.rotation.set(0, (i % 2 ? 0.22 : -0.18), 0);
-      dummy.scale.setScalar(1);
-    });
+    const core = new THREE.Mesh(
+      keep(new THREE.OctahedronGeometry(0.44, quality.detail > 0.7 ? 1 : 0)),
+      metalMaterial(group, 0x14242d, {
+        metalness: 0.94, roughness: 0.18, emissive: LIME,
+        emissiveIntensity: 0.22, opacity: 0.96
+      })
+    );
+    group.add(core);
 
-    const dust = makeParticles(group, particleCount(180), 0.28, 0.024, (i, positions, seeds) => {
-      const angle = random() * Math.PI * 2;
-      const radius = 1.5 + random() * 1.6;
-      positions[i * 3] = Math.cos(angle) * radius;
-      positions[i * 3 + 1] = (random() - 0.5) * 4.4;
-      positions[i * 3 + 2] = Math.sin(angle) * radius * 0.7;
-      seeds[i * 4] = angle;
-      seeds[i * 4 + 1] = 0.05 + random() * 0.1;
+    const heart = new THREE.Mesh(
+      keep(new THREE.IcosahedronGeometry(0.17, quality.detail > 0.7 ? 1 : 0)),
+      accentMaterial(group, LIME, 0.94, 1.05)
+    );
+    group.add(heart);
+
+    const orbit = new THREE.Mesh(
+      keep(new THREE.RingGeometry(1.16, 1.18, quality.detail > 0.7 ? 56 : 32)),
+      accentMaterial(group, NETWORK_CYAN, 0.38, 0.5)
+    );
+    group.add(orbit);
+
+    const modulePositions = [
+      [0, 1.95, -0.14],
+      [0, -1.95, 0.2],
+      [-2.18, 0, -0.46],
+      [2.18, 0, 0.3]
+    ];
+    const moduleScales = [
+      [0.92, 0.46, 0.5],
+      [0.92, 0.46, 0.5],
+      [0.5, 0.76, 0.5],
+      [0.5, 0.76, 0.5]
+    ];
+    const moduleGeometry = keep(new THREE.BoxGeometry(1, 1, 1));
+    const modules = makeInstances(
+      group,
+      moduleGeometry,
+      metalMaterial(group, 0x1b2b36, {
+        metalness: 0.92, roughness: 0.24, emissive: NETWORK_CYAN,
+        emissiveIntensity: 0.08, opacity: 0.9
+      }),
+      modulePositions.length,
+      (dummy, i) => {
+        const position = modulePositions[i];
+        const scale = moduleScales[i];
+        dummy.position.set(position[0], position[1], position[2]);
+        dummy.rotation.set(0.06, i % 2 ? -0.18 : 0.18, 0);
+        dummy.scale.set(scale[0], scale[1], scale[2]);
+      }
+    );
+
+    const accents = makeInstances(
+      group,
+      moduleGeometry,
+      accentMaterial(group, NETWORK_CYAN, 0.62, 0.62),
+      modulePositions.length,
+      (dummy, i) => {
+        const position = modulePositions[i];
+        const scale = moduleScales[i];
+        dummy.position.set(position[0], position[1], position[2] + scale[2] * 0.5 + 0.014);
+        dummy.rotation.set(0.06, i % 2 ? -0.18 : 0.18, 0);
+        dummy.scale.set(scale[0] * 0.62, scale[1] * 0.12, 0.02);
+      }
+    );
+
+    const cyanLinks = [];
+    const limeLinks = [];
+    for (let i = 0; i < modulePositions.length; i += 1) {
+      const position = modulePositions[i];
+      const links = i % 2 === 0 ? limeLinks : cyanLinks;
+      links.push([
+        [position[0] * 0.22, position[1] * 0.22, position[2] * 0.22],
+        [position[0] * 0.86, position[1] * 0.86, position[2] * 0.86]
+      ]);
+    }
+    makeTubes(group, cyanLinks, accentMaterial(group, NETWORK_CYAN, 0.44, 0.58), 0.014);
+    makeTubes(group, limeLinks, accentMaterial(group, LIME, 0.38, 0.52), 0.012);
+
+    const beads = makeParticles(group, particleCount(40), 0.68, 0.052, (i, positions, seeds) => {
+      seeds[i * 4] = i % modulePositions.length;
+      seeds[i * 4 + 1] = random();
       seeds[i * 4 + 2] = random();
-      seeds[i * 4 + 3] = radius;
-    });
+      seeds[i * 4 + 3] = 0.08 + random() * 0.1;
+    }, [NETWORK_CYAN, NETWORK_CYAN, LIME]);
 
     const dummy = new THREE.Object3D();
 
-    group.userData.spin = -0.028;
-    group.userData.float = 0.04;
+    group.userData.spin = -0.014;
+    group.userData.float = 0.028;
     group.userData.animate = (dt, time, pointer) => {
-      for (let i = 0; i < widths.length; i += 1) {
-        dummy.position.set(
-          (i % 2 ? 0.12 : -0.1) + pointer.x * 0.035,
-          (i - 2.5) * 0.58 + Math.sin(time * 0.35 + i * 0.6) * 0.022,
-          (i % 3 - 1) * 0.18
-        );
-        dummy.rotation.set((i % 2 ? 0.04 : -0.03), (i % 2 ? 0.22 : -0.18), (i % 3 - 1) * 0.035);
-        dummy.scale.set(widths[i], 1, depths[i]);
-        dummy.updateMatrix();
-        slabs.setMatrixAt(i, dummy.matrix);
+      shell.rotation.y = time * 0.055;
+      shell.rotation.x = Math.sin(time * 0.18) * 0.07;
+      core.rotation.y += dt * 0.16;
+      core.rotation.x = Math.sin(time * 0.24) * 0.1;
+      heart.scale.setScalar(0.9 + Math.sin(time * 1.25) * 0.09);
+      orbit.quaternion.copy(camera.quaternion);
+      orbit.rotateZ(time * 0.026);
 
-        dummy.scale.setScalar(1);
-        dummy.position.y -= 0.1;
+      for (let i = 0; i < modulePositions.length; i += 1) {
+        const position = modulePositions[i];
+        const scale = moduleScales[i];
+        const pulse = 1 + Math.sin(time * 0.7 + i * 1.6) * 0.014;
+        dummy.position.set(
+          position[0] + pointer.x * 0.022,
+          position[1] - pointer.y * 0.016,
+          position[2]
+        );
+        dummy.rotation.set(0.06, (i % 2 ? -0.18 : 0.18) + Math.sin(time * 0.2 + i) * 0.018, 0);
+        dummy.scale.set(scale[0] * pulse, scale[1] * pulse, scale[2]);
+        dummy.updateMatrix();
+        modules.setMatrixAt(i, dummy.matrix);
+
+        dummy.position.z = position[2] + scale[2] * 0.5 + 0.014;
+        dummy.scale.set(scale[0] * 0.62 * pulse, scale[1] * 0.12, 0.02);
         dummy.updateMatrix();
         accents.setMatrixAt(i, dummy.matrix);
       }
-      slabs.instanceMatrix.needsUpdate = true;
+      modules.instanceMatrix.needsUpdate = true;
       accents.instanceMatrix.needsUpdate = true;
-      spine.rotation.y = time * 0.05;
 
-      for (let i = 0; i < dust.count; i += 1) {
+      const beadPositions = beads.positions;
+      for (let i = 0; i < beads.count; i += 1) {
         const index = i * 3;
-        const angle = dust.seeds[i * 4] + time * dust.seeds[i * 4 + 1] * 0.2;
-        const reaction = reactionAt(dust.positions[index], dust.positions[index + 1]);
-        dust.positions[index] = Math.cos(angle) * dust.seeds[i * 4 + 3] + Math.sin(dust.seeds[i * 4 + 2] * 8 + time) * reaction * 0.12;
-        dust.positions[index + 2] = Math.sin(angle) * dust.seeds[i * 4 + 3] * 0.7;
+        const position = modulePositions[Math.floor(beads.seeds[i * 4])];
+        const t = (beads.seeds[i * 4 + 1] + time * beads.seeds[i * 4 + 3]) % 1;
+        beadPositions[index] = lerp(0, position[0] * 0.86, t) + pointer.x * 0.018 * (1 - t);
+        beadPositions[index + 1] = lerp(0, position[1] * 0.86, t) - pointer.y * 0.014 * (1 - t);
+        beadPositions[index + 2] = lerp(0, position[2] * 0.86, t) + Math.sin(t * Math.PI) * 0.1;
       }
-      dust.geometry.attributes.position.needsUpdate = true;
+      beads.geometry.attributes.position.needsUpdate = true;
     };
   };
 

@@ -145,6 +145,7 @@ html.js.is-project-ready .project-shell {
 }
 
 .project-nav {
+  --project-nav-pad: clamp(14px, 1.5vw, 20px);
   min-height: var(--header-h);
   display: flex;
   align-items: center;
@@ -179,7 +180,7 @@ html.js.is-project-ready .project-shell {
 .project-nav__links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 0;
 }
 
 .project-nav__links a,
@@ -187,6 +188,7 @@ html.js.is-project-ready .project-shell {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
+  padding-inline: var(--project-nav-pad);
   font: 500 var(--type-label)/1.3 var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -194,16 +196,23 @@ html.js.is-project-ready .project-shell {
 
 .project-nav__links a {
   color: var(--muted);
+  white-space: nowrap;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.project-nav__links a + a {
+  border-left: 1px solid var(--line);
 }
 
 .project-nav__links a:hover,
 .project-nav__links a:focus-visible {
   color: var(--text);
+  background: rgba(var(--accent-rgb), 0.07);
 }
 
 .project-return {
   gap: 8px;
-  padding: 0 14px;
+  padding-inline: clamp(14px, 1.4vw, 18px);
   border: 1px solid rgba(var(--accent-rgb), 0.44);
   background: rgba(var(--accent-rgb), 0.08);
   color: var(--accent);
@@ -811,6 +820,24 @@ html.js.is-project-ready .project-shell {
 .project-section[id],
 .project-hero[id] {
   scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+@media (max-width: 1100px) {
+  .project-nav {
+    gap: 16px;
+  }
+
+  .project-wordmark__suffix {
+    display: none;
+  }
+
+  .project-nav__links a {
+    padding-inline: 14px;
+  }
+
+  .project-return {
+    padding-inline: 12px;
+  }
 }
 
 @media (max-width: 900px) {

@@ -592,7 +592,11 @@
       emit("prototype:network-restore", restoreDetail);
 
       if (params.get("focus") === "1") {
-        window.requestAnimationFrame(() => focusSafely(node));
+        /* The initial fragment navigation can reset focus to BODY after the
+           first animation frame. Wait for load so the restored node keeps it. */
+        const focusRestoredNode = () => window.requestAnimationFrame(() => focusSafely(node));
+        if (document.readyState === "complete") focusRestoredNode();
+        else window.addEventListener("load", focusRestoredNode, { once: true });
       }
     };
 
@@ -650,11 +654,14 @@
     const params = new URLSearchParams(window.location.search);
     if (params.get("from") !== "network") return;
 
+    const projectRoot = document.body.classList.contains("lab-page")
+      ? "../projects/"
+      : "projects/";
     const routes = {
-      browser: "projects/browser-tracker.html?from=network&node=browser",
-      voice: "projects/live-voice-to-text.html?from=network&node=voice",
-      experiments: "projects/interactive-experiments.html?from=network&node=experiments",
-      serein: "projects/serein.html?from=network&node=serein"
+      browser: `${projectRoot}browser-tracker.html?from=network&node=browser`,
+      voice: `${projectRoot}live-voice-to-text.html?from=network&node=voice`,
+      experiments: `${projectRoot}interactive-experiments.html?from=network&node=experiments`,
+      serein: `${projectRoot}serein.html?from=network&node=serein`
     };
     const target = routes[params.get("project")];
     if (target) window.location.replace(target);
