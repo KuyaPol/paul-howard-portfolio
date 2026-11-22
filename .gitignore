@@ -16,6 +16,10 @@ public/
 portfolio-review.zip
 .impeccable/config.local.json
 .impeccable/hook.cache.json
+.opencode/
+.playwright-mcp/
+design-prototype/screenshots/
+design-prototype/performance-*.json
 
 # Local design-tool and review artifacts
 .taste/

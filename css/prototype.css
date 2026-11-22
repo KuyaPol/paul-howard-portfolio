@@ -863,6 +863,10 @@ html.has-scenes .scene-hero .signal-stage {
   line-height: var(--leading-body);
 }
 
+.profile-copy .view-more-link {
+  margin-top: 24px;
+}
+
 .profile-card {
   display: flex;
   flex-direction: column;

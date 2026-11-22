@@ -15,6 +15,7 @@ mkdirSync(resolve(output, 'js'), { recursive: true });
 // Keep this list explicit so review captures, logs, and local tooling stay out.
 for (const entry of [
   'index.html',
+  'about',
   'beyond-the-portfolio',
   'projects',
   'css',
@@ -24,6 +25,7 @@ for (const entry of [
   'docs',
   'js/prototype.js',
   'js/prototype-scene.js',
+  'js/site-fade.js',
   'js/project.js',
   'js/experiments.js',
   'js/vendor'

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Source-backed documentation and lightweight interactive demonstrations for the Interactive Experiments prototype work.">
+  <title>Interactive Experiments — Project Deep Dive | Paul Howard</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../typography.css?v=13">
+  <link rel="stylesheet" href="project.css?v=14">
+  <link rel="stylesheet" href="experiments.css?v=14">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="project.js" defer></script>
+  <script src="experiments.js" defer></script>
+</head>
+<body class="project-experiments" data-project="experiments">
+  <a class="skip-link" href="#project-main">Skip to the lab record</a>
+
+  <div class="project-shell">
+    <header class="project-header">
+      <nav class="project-nav" aria-label="Project documentation navigation">
+        <a class="project-wordmark" href="../index.html">
+          <span class="project-wordmark__mark" aria-hidden="true"></span>
+          <span>PAUL HOWARD / SIGNAL SYSTEMS</span>
+          <span class="project-wordmark__suffix" aria-hidden="true">P—03</span>
+        </a>
+        <div class="project-nav__links">
+          <a href="#project-overview">Overview</a>
+          <a href="#project-lab">Interactive lab</a>
+          <a href="#project-performance">Performance</a>
+        </div>
+        <a class="project-return" data-network-return href="../beyond-the-portfolio.html?from=network&node=experiments&focus=1#scene-project-network">← Back to Network</a>
+      </nav>
+    </header>
+
+    <main id="project-main">
+      <section class="project-hero lab-hero" id="project-top" aria-labelledby="project-title">
+        <div class="project-hero__copy">
+          <p class="project-kicker">P—03 / PROJECT DEEP DIVE / DIGITAL LABORATORY</p>
+          <h1 id="project-title">Interactive <span>Experiments</span></h1>
+          <p class="project-lede">A working record of the prototype's motion, geometry, and interaction studies — with lightweight demonstrations built for this page so the techniques can be explored without a second WebGL renderer.</p>
+          <div class="hero-status">
+            <span class="status-badge">SOURCE-VERIFIED</span>
+            <span class="status-badge status-badge--warm">LAB DEMOS ADDED HERE</span>
+            <span class="hero-meta">NOT A STANDALONE PRODUCT · NOT A PUBLISHED DEMO</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button-primary" href="#project-lab">Enter the lab <span aria-hidden="true">↓</span></a>
+            <a class="project-return" data-network-return href="../beyond-the-portfolio.html?from=network&node=experiments&focus=1#scene-project-network">← Back to Network</a>
+          </div>
+        </div>
+
+        <div class="lab-console" aria-hidden="true">
+          <div class="lab-console__head">
+            <span>LAB / OBSERVATION DECK</span>
+            <span>SESSION 03</span>
+          </div>
+          <div class="lab-console__body">
+            <div class="lab-readout">
+              <p class="lab-readout__label">ACTIVE RENDERER</p>
+              <p class="lab-readout__value">SHARED <span>3D</span></p>
+            </div>
+            <div class="lab-readout">
+              <p class="lab-readout__label">LAB PROBES</p>
+              <p class="lab-readout__value">CANVAS <span>2D</span></p>
+            </div>
+            <div class="lab-readout">
+              <p class="lab-readout__label">INPUT CHANNELS</p>
+              <div class="lab-bars">
+                <i style="--h: 38%"></i><i style="--h: 64%"></i><i style="--h: 46%"></i><i style="--h: 82%"></i><i style="--h: 55%"></i><i style="--h: 71%"></i><i style="--h: 33%"></i><i style="--h: 60%"></i>
+              </div>
+            </div>
+            <div class="lab-readout">
+              <p class="lab-readout__label">MOTION POLICY</p>
+              <p class="lab-readout__value">PAUSE <span>IDLE</span></p>
+            </div>
+          </div>
+          <div class="lab-console__reticle"></div>
+          <div class="lab-console__foot">
+            <span>INSTRUMENT PANEL / NOT A PRODUCT SCREENSHOT</span>
+            <span>S—03</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-overview" aria-labelledby="overview-title">
+        <div class="section-grid">
+          <aside class="section-aside">
+            <p class="section-index">01 / OVERVIEW</p>
+            <nav class="doc-nav" aria-label="Lab record sections">
+              <p>ON THIS PAGE</p>
+              <ul>
+                <li><a href="#project-overview">Overview</a></li>
+                <li><a href="#project-problem">Problems explored</a></li>
+                <li><a href="#project-status">Status</a></li>
+                <li><a href="#project-technologies">Technologies</a></li>
+                <li><a href="#project-lab">Interactive lab</a></li>
+                <li><a href="#project-architecture">Architecture</a></li>
+                <li><a href="#project-performance">Performance</a></li>
+                <li><a href="#project-evidence">Evidence</a></li>
+                <li><a href="#project-limitations">Limitations</a></li>
+                <li><a href="#project-future">Future work</a></li>
+              </ul>
+            </nav>
+          </aside>
+          <div class="doc-content">
+            <h2 id="overview-title">A laboratory for techniques, not a single shipped product.</h2>
+            <p><strong>Interactive Experiments</strong> is the portfolio label for a set of small visual and interaction studies. Source inspection shows several of those techniques are genuinely implemented in the existing prototype: a shared Three.js scene renderer, crossfaded scenes, tiered quality controls, pointer-reactive parallax, travelling network pulses, scroll-linked motion, and procedural ambient visuals.</p>
+            <p>This page records those implementations and separates them from concepts. The three probes in the interactive lab below are <strong>newly developed for this deep-dive page</strong>. They use lightweight Canvas 2D and explain the same kinds of techniques without presenting themselves as a standalone product or reusing a second WebGL renderer.</p>
+            <div class="fact-grid">
+              <article class="fact-card">
+                <p class="fact-card__label">PURPOSE</p>
+                <h3>Make technique visible</h3>
+                <p>Show how motion, procedural form, input mapping, and restraint are actually built in this prototype.</p>
+              </article>
+              <article class="fact-card">
+                <p class="fact-card__label">SCOPE</p>
+                <h3>Record, not release</h3>
+                <p>No experiment store, account, export service, or published standalone demo is claimed here.</p>
+              </article>
+            </div>
+            <p class="note">Everything labelled “working” was found in repository source. Everything labelled “lab probe” was written for this page and is identified as such at the point of use.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-problem" aria-labelledby="problem-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">02 / PROBLEMS EXPLORED</p></aside>
+          <div class="doc-content">
+            <h2 id="problem-title">How much interaction and motion can a portfolio carry before it costs the visitor?</h2>
+            <p>The experiments cluster around five practical questions rather than a single product brief:</p>
+            <ul>
+              <li><strong>Depth without heaviness:</strong> how far a shared WebGL renderer can carry procedural scenes before a second renderer is justified.</li>
+              <li><strong>Input mapping:</strong> how pointer, keyboard focus, and scene state can drive the same visual language.</li>
+              <li><strong>Procedural form:</strong> how geometry, particles, bands, and pulses can be generated from small amounts of code and shared geometry.</li>
+              <li><strong>Motion restraint:</strong> how animation can stop when a scene is hidden, an overlay is open, or the visitor prefers reduced motion.</li>
+              <li><strong>Accessible experimentation:</strong> how a visual study can still expose keyboard-operable controls and textual explanations.</li>
+            </ul>
+            <p class="note note--caution">These are themes observed in the source and the lab record. They are not a funded research programme or measured product outcomes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-status" aria-labelledby="status-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">03 / STATUS</p></aside>
+          <div class="doc-content">
+            <h2 id="status-title">Working implementations, new lab probes, and concepts are kept apart.</h2>
+            <ul class="lab-status-list">
+              <li><span class="status-badge">WORKING</span><p>Shared Three.js renderer, scene builders, crossfades, quality tiers, pointer parallax, network pulses, focus/inert handling, reduced-motion gating, and idle-stop behaviour in <code>design-prototype/prototype.js</code> and <code>prototype-scene.js</code>.</p></li>
+              <li><span class="status-badge">WORKING</span><p>Scroll-linked wave presentation, a procedural ambient spectrum, and reduced-motion-aware Web Animations reveals in <code>js/motion.js</code>, <code>js/space.js</code>, <code>js/animations.js</code>, and <code>js/beyond-concepts.js</code>. The spectrum source states that no audio is played.</p></li>
+              <li><span class="status-badge status-badge--warm">NEW LAB PROBE</span><p>Three Canvas 2D demonstrations on this page: pointer field, network trace, and generative wave. They are explanatory tools written for this deep dive, not existing portfolio features.</p></li>
+              <li><span class="status-badge status-badge--neutral">CONCEPT ONLY</span><p>A standalone experiments product, saved sessions, export, share links, public gallery, collaborative play, and audio-reactive analysis are not implemented.</p></li>
+            </ul>
+            <p>No performance benchmark from these experiments is presented as a product metric. The lab probes are illustrative reconstructions of techniques already present in source, with their own explicit status labels.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-technologies" aria-labelledby="technologies-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">04 / VERIFIED TECHNOLOGIES</p></aside>
+          <div class="doc-content">
+            <h2 id="technologies-title">A small set of browser-native and existing prototype technologies.</h2>
+            <div class="lab-tech-grid">
+              <article class="lab-tech-card">
+                <span class="lab-tech-card__type">WORKING / EXISTING</span>
+                <h3>Three.js</h3>
+                <p>One shared renderer drives all prototype scenes. Geometry, materials, framebuffers, and listeners are disposed through the existing lifecycle.</p>
+              </article>
+              <article class="lab-tech-card">
+                <span class="lab-tech-card__type">WORKING / EXISTING</span>
+                <h3>GSAP + ScrollTrigger</h3>
+                <p>Used in the main portfolio for scroll-linked presentation state, including the labelled Live Voice to Text wave.</p>
+              </article>
+              <article class="lab-tech-card">
+                <span class="lab-tech-card__type">NEW / THIS PAGE</span>
+                <h3>Canvas 2D</h3>
+                <p>A single 2D canvas hosts three selectable probes. No WebGL context, model, library, or runtime dependency is added.</p>
+              </article>
+              <article class="lab-tech-card">
+                <span class="lab-tech-card__type">WORKING / BROWSER APIs</span>
+                <h3>Media queries + observers</h3>
+                <p><code>matchMedia</code>, <code>ResizeObserver</code>, <code>IntersectionObserver</code>, and the page visibility API control motion, sizing, and pausing.</p>
+              </article>
+            </div>
+            <p>HTML buttons, native <code>dialog</code>, <code>inert</code>, CSS custom properties, <code>:focus-visible</code>, and Web Animations API reveals in <code>js/animations.js</code> and <code>js/beyond-concepts.js</code> complete the verified interaction stack. No framework, bundler step, or install is introduced by this page.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-lab" aria-labelledby="lab-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">05 / INTERACTIVE LAB</p></aside>
+          <div class="doc-content">
+            <h2 id="lab-title">Three probes, one lightweight bench.</h2>
+            <p>Choose a probe, then use the pointer on the canvas or the keyboard controls beside it. The bench runs only the selected experiment, pauses when off-screen or when the tab is hidden, and shows a single static frame when reduced motion is requested.</p>
+
+            <div class="lab-bench" data-lab-bench>
+              <div class="lab-bench__head">
+                <span>LAB BENCH / SELECT A PROBE</span>
+                <button class="lab-button" type="button" data-lab-toggle aria-pressed="false">PAUSE</button>
+              </div>
+
+              <div class="lab-tabs" role="tablist" aria-label="Interactive experiment probes">
+                <button class="lab-tab" type="button" role="tab" id="tab-field" aria-controls="panel-field" aria-selected="true" tabindex="0" data-lab-tab="field" data-lab-label="POINTER FIELD">Pointer field</button>
+                <button class="lab-tab" type="button" role="tab" id="tab-network" aria-controls="panel-network" aria-selected="false" tabindex="-1" data-lab-tab="network" data-lab-label="NETWORK TRACE">Network trace</button>
+                <button class="lab-tab" type="button" role="tab" id="tab-wave" aria-controls="panel-wave" aria-selected="false" tabindex="-1" data-lab-tab="wave" data-lab-label="GENERATIVE WAVE">Generative wave</button>
+              </div>
+
+              <div class="lab-workspace">
+                <div class="lab-viewport">
+                  <canvas data-lab-canvas role="img" aria-label="Interactive 2D experiment canvas. Use the tab buttons and keyboard controls beside it to change the demonstration.">Your browser does not support canvas. The written explanations beside this panel still describe each technique.</canvas>
+                  <div class="lab-viewport__hud" aria-hidden="true">
+                    <span data-lab-hud-name>POINTER FIELD</span>
+                    <span data-lab-hud-state>RUNNING</span>
+                  </div>
+                </div>
+
+                <div class="lab-side">
+                  <div class="lab-panel" role="tabpanel" id="panel-field" aria-labelledby="tab-field" data-lab-panel="field">
+                    <span class="lab-panel__status">NEW LAB PROBE / 2D CANVAS</span>
+                    <h3>Pointer field</h3>
+                    <p>A bounded field of points reacts to the pointer with a soft radial falloff. Move over the canvas, then change strength or switch between repel and attract to see how input maps to motion.</p>
+                    <ul class="lab-concepts">
+                      <li>pointer mapping</li>
+                      <li>falloff</li>
+                      <li>velocity damping</li>
+                      <li>DPR scaling</li>
+                    </ul>
+                    <div class="lab-controls">
+                      <div class="lab-control">
+                        <label for="field-strength">Field strength <output data-lab-output="field-strength" for="field-strength">0.8×</output></label>
+                        <input id="field-strength" type="range" min="0.2" max="1.4" step="0.1" value="0.8" data-lab-range="field-strength" data-lab-label="Field strength">
+                      </div>
+                      <div class="lab-actions">
+                        <button class="lab-button" type="button" data-lab-action="field-mode" aria-pressed="false">MODE: REPEL</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="lab-panel" role="tabpanel" id="panel-network" aria-labelledby="tab-network" data-lab-panel="network" hidden>
+                    <span class="lab-panel__status">NEW LAB PROBE / 2D RECONSTRUCTION</span>
+                    <h3>Network trace</h3>
+                    <p>A small generated graph sends pulses along its edges. Hover a node to inspect hit-testing, inject a pulse, or turn automatic pulses off. This is a lightweight 2D study of the same graph-and-pulse idea used by the Phase 10 network, not a copy of its WebGL scene.</p>
+                    <ul class="lab-concepts">
+                      <li>graph edges</li>
+                      <li>edge interpolation</li>
+                      <li>easing</li>
+                      <li>hit testing</li>
+                    </ul>
+                    <div class="lab-controls">
+                      <div class="lab-control">
+                        <label for="network-density">Node count <output data-lab-output="network-density" for="network-density">12</output></label>
+                        <input id="network-density" type="range" min="8" max="18" step="1" value="12" data-lab-range="network-density" data-lab-label="Node count">
+                      </div>
+                      <div class="lab-actions">
+                        <button class="lab-button" type="button" data-lab-action="network-pulse">SEND PULSE</button>
+                        <button class="lab-button" type="button" data-lab-action="network-auto" aria-pressed="true">AUTO PULSE: ON</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="lab-panel" role="tabpanel" id="panel-wave" aria-labelledby="tab-wave" data-lab-panel="wave" hidden>
+                    <span class="lab-panel__status">NEW LAB PROBE / PROCEDURAL MOTION</span>
+                    <h3>Generative wave</h3>
+                    <p>Three layered sine curves use seeded phase offsets and an amplitude envelope. Change frequency, amplitude, or the seed; pointer position adds a small phase shift. This is a study of procedural motion, not audio analysis.</p>
+                    <ul class="lab-concepts">
+                      <li>seeded variation</li>
+                      <li>layered sine</li>
+                      <li>amplitude envelope</li>
+                      <li>phase offset</li>
+                    </ul>
+                    <div class="lab-controls">
+                      <div class="lab-control">
+                        <label for="wave-frequency">Frequency <output data-lab-output="wave-frequency" for="wave-frequency">2.2</output></label>
+                        <input id="wave-frequency" type="range" min="0.8" max="5" step="0.1" value="2.2" data-lab-range="wave-frequency" data-lab-label="Frequency">
+                      </div>
+                      <div class="lab-control">
+                        <label for="wave-amplitude">Amplitude <output data-lab-output="wave-amplitude" for="wave-amplitude">0.58</output></label>
+                        <input id="wave-amplitude" type="range" min="0.2" max="1" step="0.02" value="0.58" data-lab-range="wave-amplitude" data-lab-label="Amplitude">
+                      </div>
+                      <div class="lab-actions">
+                        <button class="lab-button" type="button" data-lab-action="wave-reseed">RESEED</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="lab-live" data-lab-live aria-live="polite">Bench ready. Pointer and keyboard controls are active.</p>
+              <div class="lab-bench__foot">NEW PROTOTYPE FEATURES / CANVAS 2D / PAUSED WHEN HIDDEN OR OFF-SCREEN</div>
+            </div>
+
+            <ul class="lab-log">
+              <li><strong>Working source</strong><span>Motion, geometry, and input systems already present in the repository are documented without exaggeration.</span></li>
+              <li><strong>Lab probes</strong><span>The three demonstrations above were written for this page to make those techniques inspectable.</span></li>
+              <li><strong>Not present</strong><span>No standalone app, audio input, saved experiments, export pipeline, or public demo is implied by this bench.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-architecture" aria-labelledby="architecture-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">06 / ARCHITECTURE &amp; MOTION</p></aside>
+          <div class="doc-content">
+            <h2 id="architecture-title">One existing renderer, one new lightweight bench.</h2>
+            <h3>Existing prototype renderer</h3>
+            <p>The shared scene module builds each visual on demand, crossfades between them, and keeps a single animation loop. Desktop quality tiers adjust geometry and frame pacing; pointer parallax and focal shifts are eased. Networks use shared geometry and instanced meshes where practical, with pulses travelling along precomputed paths. Overlays pause rendering, and disposal removes listeners, geometries, materials, and framebuffers.</p>
+            <h3>Lab bench loop</h3>
+            <p>The new bench uses one 2D canvas and one selected experiment model. A resize observer keeps the drawing buffer at a capped device-pixel ratio; an intersection observer and the page visibility API stop the animation loop when the bench is off-screen or the tab is hidden. Reduced motion renders a static frame and disables the loop entirely. Tab switches rebuild only the selected model, so unused particle, graph, and wave state is not retained.</p>
+            <h3>Network handoff</h3>
+            <p>The P—03 node remains a real HTML button in the Project Network. Its activation uses the same highlight, camera-ease, fade, and delayed navigation path as P—01 and P—02. The destination is this dedicated page; the old Work-dialog URL redirects here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-performance" aria-labelledby="performance-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">07 / PERFORMANCE &amp; ACCESSIBILITY</p></aside>
+          <div class="doc-content">
+            <h2 id="performance-title">Restraint is part of the experiment.</h2>
+            <ul>
+              <li><strong>No extra WebGL context:</strong> the lab uses Canvas 2D only. The existing network keeps its single shared renderer.</li>
+              <li><strong>One active probe:</strong> only the selected experiment updates; the other two models are rebuilt on demand.</li>
+              <li><strong>Bounded work:</strong> particle count scales with viewport area, node count is capped at 18, and device-pixel ratio is capped at 1.5.</li>
+              <li><strong>Idle stop:</strong> the loop pauses off-screen, when the tab is hidden, when the visitor presses Pause, and under reduced motion.</li>
+              <li><strong>Keyboard parity:</strong> tab buttons support Arrow, Home, and End; sliders and action buttons are native controls; all state changes are announced in a polite live region.</li>
+              <li><strong>Focus and motion:</strong> the shared two-pixel focus outline is preserved, and reduced motion removes page, panel, and canvas motion.</li>
+              <li><strong>Mobile:</strong> no WebGL renderer is created on small or coarse-pointer devices, and the lab canvas uses a compact aspect ratio.</li>
+            </ul>
+            <p class="note">These are implementation safeguards, not benchmark results. Phase 8 performance records remain the source for measured renderer metrics.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-evidence" aria-labelledby="evidence-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">08 / EVIDENCE</p></aside>
+          <div class="doc-content">
+            <h2 id="evidence-title">Source, not assumption.</h2>
+            <ul class="source-list">
+              <li><span>SCENE</span><code>design-prototype/prototype-scene.js</code></li>
+              <li><span>CONTROL</span><code>design-prototype/prototype.js</code></li>
+              <li><span>PRESENTATION</span><code>js/motion.js</code></li>
+              <li><span>SPECTRUM</span><code>js/space.js</code></li>
+              <li><span>REVEALS</span><code>js/animations.js</code></li>
+              <li><span>TRANSITIONS</span><code>js/beyond-concepts.js</code></li>
+              <li><span>LAB PAGE</span><code>design-prototype/projects/experiments.js</code></li>
+              <li><span>NOTES</span><code>design-prototype/docs/interactive-experiments.md</code></li>
+            </ul>
+            <p>Generic Work-section captures exist in the prototype, but none is presented here as a screenshot of a standalone experiments product. The Phase 11 lab screenshots document this page and its network entry explicitly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-limitations" aria-labelledby="limitations-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">09 / LIMITATIONS</p></aside>
+          <div class="doc-content">
+            <h2 id="limitations-title">What this record does not claim.</h2>
+            <ul>
+              <li>No public, downloadable, or account-based Interactive Experiments application exists in this repository.</li>
+              <li>The lab probes are newly written explanatory Canvas 2D demos, not previously shipped portfolio features.</li>
+              <li>No audio input, microphone capture, speech analysis, model inference, or audio playback is part of the existing spectrum or this lab.</li>
+              <li>No save, export, share, replay, or experiment-gallery system is implemented.</li>
+              <li>No independent benchmark, cross-browser matrix, or accessibility audit is claimed for the new probes.</li>
+              <li>WebGL remains desktop-only in the existing prototype; mobile visitors receive the lightweight 2D fallback.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="project-future" aria-labelledby="future-title">
+        <div class="section-grid">
+          <aside class="section-aside"><p class="section-index">10 / FUTURE WORK</p></aside>
+          <div class="doc-content">
+            <h2 id="future-title">Possible directions — none are started here.</h2>
+            <p>A future version could turn the bench into a saved laboratory with shareable seeded states, add a documented audio-input mode with explicit consent, publish measured frame budgets per quality tier, or promote one probe into a real product surface. Each would need its own source, privacy boundary, and verification; none is implied by the current page.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="project-footer">
+        <div class="project-footer__inner">
+          <p class="project-footer__meta">P—03 / INTERACTIVE EXPERIMENTS / SIGNAL / SYSTEMS</p>
+          <a class="project-return" data-network-return href="../beyond-the-portfolio.html?from=network&node=experiments&focus=1#scene-project-network">← Back to Network</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
