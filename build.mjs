@@ -26,6 +26,7 @@ for (const entry of [
   'js/prototype.js',
   'js/prototype-scene.js',
   'js/site-fade.js',
+  'js/site-reload.js',
   'js/project.js',
   'js/experiments.js',
   'js/vendor'
