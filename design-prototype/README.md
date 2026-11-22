@@ -1,6 +1,28 @@
 # Signal / Systems — Local Visual Prototype
 
-Static visual prototype for Design Phases 5–15 plus the Phase 11 P—03 addendum. The earlier phase records below are historical; Phase 14 published the approved Phase 13.1 prototype at the production root routes, and Phase 15 keeps this prototype's Profile and About files aligned with those production routes. This directory is not published by `build.mjs`.
+Static visual prototype for Design Phases 5–16 plus the Phase 11 P—03 addendum. The earlier phase records below are historical; Phase 14 published the approved Phase 13.1 prototype at the production root routes, and Phase 15 keeps this prototype's Profile and About files aligned with those production routes. This directory is not published by `build.mjs`.
+
+## Phase 16: P—04 SEREIN proposal
+
+P—04 is now declared as the fourth personal software project. The Work grid uses a 2×2 desktop layout, the About project list uses two columns, and the Project Network shows seven nodes: four project destinations and three studies. SEREIN is deliberately marked `PROJECT PROPOSAL / PLANNED` with cyan dashed styling and is never presented as completed software.
+
+| Node | Destination |
+| --- | --- |
+| Browser Tracker | `projects/browser-tracker.html?from=network&node=browser` |
+| Live Voice to Text | `projects/live-voice-to-text.html?from=network&node=voice` |
+| Interactive Experiments | `projects/interactive-experiments.html?from=network&node=experiments` |
+| SEREIN | `projects/serein.html?from=network&node=serein` |
+| Three studies | unchanged: local `study-*` panels |
+
+`projects/serein.html` is a static proposal destination with the supplied overview, planned capabilities, architecture schematic, development status, the `Download Full Project Proposal` CTA, and a Back to Project Network control. The authoritative PDF is a supplied asset at `../assets/docs/SEREIN_Full_Project_Proposal_Paul_Howard_Chavez.pdf`; no replacement PDF is generated.
+
+### Phase 16 files
+
+- `index.html`, `about/index.html`, `beyond-the-portfolio.html` — fourth Work card, About entry, and planned network node.
+- `projects/serein.html` — dedicated proposal destination.
+- `prototype.css`, `about.css`, `project.css` — planned styling, 2-column layouts, SEREIN node placement, and cache-busting.
+- `prototype.js`, `projects/project.js` — SEREIN route/state index and return handling.
+- `docs/serein.md` — proposal status boundaries and provenance notes.
 
 ## Phase 15: Profile expansion & About route
 

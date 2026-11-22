@@ -8,7 +8,7 @@
   const SCENE_FADE_MS = 720;
   const NETWORK_ACTIVATE_MS = 640;
   const NETWORK_STATE_KEY = "phase11:network-state";
-  const PROJECT_NODE_INDEX = { browser: 0, voice: 1, experiments: 2 };
+  const PROJECT_NODE_INDEX = { browser: 0, voice: 1, experiments: 2, serein: 3 };
   const WHEEL_THRESHOLD = 48;
   const WHEEL_IDLE_MS = 220;
   const TOUCH_THRESHOLD = 56;
@@ -643,8 +643,9 @@
     });
   }
 
-  /* Phase 11 addendum: all three Work nodes now use dedicated deep dives.
-     Old Work-dialog URLs are redirected so no project lands on a brief panel. */
+  /* Phase 11 addendum, extended in Phase 16: all four project nodes now use
+     dedicated destinations. Old Work-dialog URLs are redirected so no project
+     lands on a brief panel. */
   function setupCrossPageProject() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("from") !== "network") return;
@@ -655,7 +656,8 @@
     const routes = {
       browser: `${projectRoot}browser-tracker.html?from=network&node=browser`,
       voice: `${projectRoot}live-voice-to-text.html?from=network&node=voice`,
-      experiments: `${projectRoot}interactive-experiments.html?from=network&node=experiments`
+      experiments: `${projectRoot}interactive-experiments.html?from=network&node=experiments`,
+      serein: `${projectRoot}serein.html?from=network&node=serein`
     };
     const target = routes[params.get("project")];
     if (target) window.location.replace(target);

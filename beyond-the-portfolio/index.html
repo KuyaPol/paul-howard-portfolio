@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/typography.css?v=13">
-  <link rel="stylesheet" href="../css/prototype.css?v=19">
+  <link rel="stylesheet" href="../css/prototype.css?v=20">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body class="lab-page" id="top">
@@ -115,10 +115,10 @@
         <header class="section-head network-head">
           <p class="section-index">03 / PROJECT NETWORK</p>
           <h2 id="network-title" data-scene-focus tabindex="-1">Explore the systems <span>behind the work.</span></h2>
-          <p class="section-aside">06 NODES / DEEP DIVES + STUDY PANELS</p>
+          <p class="section-aside">07 NODES / 04 PROJECTS + 03 STUDIES</p>
         </header>
 
-        <div class="network-map" data-network-map data-edges="0-2,2-4,0-1,1-3,2-3,2-5,4-5,3-5">
+        <div class="network-map" data-network-map data-edges="0-2,2-5,0-1,1-4,2-4,2-6,5-6,4-6,2-3,3-4,3-6">
           <div class="network-grid" aria-hidden="true"></div>
 
           <svg class="network-threads" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -130,6 +130,9 @@
             <line x1="53" y1="28" x2="90" y2="56" />
             <line x1="82" y1="18" x2="90" y2="56" />
             <line x1="67" y1="74" x2="90" y2="56" />
+            <line x1="53" y1="28" x2="62" y2="48" />
+            <line x1="62" y1="48" x2="67" y2="74" />
+            <line x1="62" y1="48" x2="90" y2="56" />
           </svg>
 
           <button class="network-node" type="button" data-network-node data-node-id="browser" data-node-index="0" data-node-x="34" data-node-y="18" data-node-depth="-1.2" data-destination="../projects/browser-tracker.html?from=network&amp;node=browser" data-preview-kicker="P—01 / DEEP DIVE" data-preview-title="Browser Tracker" data-preview-meta="SOURCE-VERIFIED" data-preview-copy="Manifest V3 extension, local dashboard bridge, and consent-gated data path. Opens the full source-verified project documentation." aria-label="Browser Tracker, source-verified local prototype. Opens full project documentation.">
@@ -156,7 +159,15 @@
             <span class="node-summary">Motion, geometry, and interaction techniques. Opens the interactive lab record.</span>
           </button>
 
-          <button class="network-node" type="button" data-network-node data-node-id="generative" data-node-index="3" data-node-x="67" data-node-y="74" data-node-depth="1.1" data-target-dialog="study-generative" data-preview-kicker="STUDY C—01" data-preview-title="Generative studies" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Signal fields, orbit systems, and restrained motion. Opens the existing study documentation here in the lab." aria-label="Generative studies, study C—01. Signal fields, orbit systems, and restrained motion. Opens the existing study documentation.">
+          <button class="network-node network-node--planned" type="button" data-network-node data-node-id="serein" data-node-index="3" data-node-x="62" data-node-y="48" data-node-depth="-0.2" data-destination="../projects/serein.html?from=network&amp;node=serein" data-preview-kicker="P—04 / PROJECT PROPOSAL" data-preview-title="SEREIN" data-preview-meta="PLANNED / NOT IMPLEMENTED" data-preview-copy="A proposal for a private Windows 11 desktop AI assistant with opt-in screen awareness, local memory, and permission-based automation. Opens the proposal overview." aria-label="SEREIN, planned Windows 11 desktop AI assistant project proposal. Opens the proposal overview; no completed software is claimed.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">P—04</span>
+            <span class="node-name">SEREIN</span>
+            <span class="node-tag">PROJECT PROPOSAL</span>
+            <span class="node-summary">Planned assistant architecture and proposal. Opens the proposal overview.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="generative" data-node-index="4" data-node-x="67" data-node-y="74" data-node-depth="1.1" data-target-dialog="study-generative" data-preview-kicker="STUDY C—01" data-preview-title="Generative studies" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Signal fields, orbit systems, and restrained motion. Opens the existing study documentation here in the lab." aria-label="Generative studies, study C—01. Signal fields, orbit systems, and restrained motion. Opens the existing study documentation.">
             <span class="node-pin" aria-hidden="true"></span>
             <span class="node-index">C—01</span>
             <span class="node-name">Generative studies</span>
@@ -164,7 +175,7 @@
             <span class="node-summary">Signal fields, orbit systems, restrained motion. Opens the study notes panel.</span>
           </button>
 
-          <button class="network-node" type="button" data-network-node data-node-id="interaction" data-node-index="4" data-node-x="82" data-node-y="18" data-node-depth="-0.9" data-target-dialog="study-interaction" data-preview-kicker="STUDY C—02" data-preview-title="Interaction sketches" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Flip, focus, and state studies for accessible interfaces, with keyboard paths as part of the design. Opens the existing study documentation here in the lab." aria-label="Interaction sketches, study C—02. Focus and state studies with keyboard paths. Opens the existing study documentation.">
+          <button class="network-node" type="button" data-network-node data-node-id="interaction" data-node-index="5" data-node-x="82" data-node-y="18" data-node-depth="-0.9" data-target-dialog="study-interaction" data-preview-kicker="STUDY C—02" data-preview-title="Interaction sketches" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Flip, focus, and state studies for accessible interfaces, with keyboard paths as part of the design. Opens the existing study documentation here in the lab." aria-label="Interaction sketches, study C—02. Focus and state studies with keyboard paths. Opens the existing study documentation.">
             <span class="node-pin" aria-hidden="true"></span>
             <span class="node-index">C—02</span>
             <span class="node-name">Interaction sketches</span>
@@ -172,7 +183,7 @@
             <span class="node-summary">Focus and state studies with keyboard paths. Opens the study notes panel.</span>
           </button>
 
-          <button class="network-node" type="button" data-network-node data-node-id="local" data-node-index="5" data-node-x="90" data-node-y="56" data-node-depth="0.3" data-target-dialog="study-local" data-preview-kicker="STUDY C—03" data-preview-title="Local tools / notes" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Notes around local-first utilities and Python experiments. No hosted service is implied. Opens the existing study documentation here in the lab." aria-label="Local tools and notes, study C—03. Local-first utility notes with no hosted service. Opens the existing study documentation.">
+          <button class="network-node" type="button" data-network-node data-node-id="local" data-node-index="6" data-node-x="90" data-node-y="56" data-node-depth="0.3" data-target-dialog="study-local" data-preview-kicker="STUDY C—03" data-preview-title="Local tools / notes" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Notes around local-first utilities and Python experiments. No hosted service is implied. Opens the existing study documentation here in the lab." aria-label="Local tools and notes, study C—03. Local-first utility notes with no hosted service. Opens the existing study documentation.">
             <span class="node-pin" aria-hidden="true"></span>
             <span class="node-index">C—03</span>
             <span class="node-name">Local tools / notes</span>
@@ -183,7 +194,7 @@
           <aside class="network-detail" id="network-detail" aria-live="polite">
             <p class="network-detail__kicker">NETWORK / IDLE</p>
             <p class="network-detail__title">Choose a node</p>
-            <p class="network-detail__copy">Three project nodes open dedicated deep-dive documentation, including the Interactive Experiments lab. Three studies open their notes here.</p>
+            <p class="network-detail__copy">Four project destinations open dedicated documentation, including the Interactive Experiments lab and the SEREIN proposal. Three studies open their notes here.</p>
             <p class="network-detail__action">HOVER OR FOCUS TO PREVIEW · ACTIVATE TO OPEN</p>
           </aside>
         </div>
@@ -325,6 +336,6 @@
     </div>
   </dialog>
 
-  <script src="../js/prototype.js"></script>
+  <script src="../js/prototype.js?v=2"></script>
 </body>
 </html>

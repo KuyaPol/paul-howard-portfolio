@@ -2,7 +2,8 @@
   "use strict";
 
   const STATE_KEY = "phase11:network-state";
-  const VALID_NODES = new Set(["browser", "voice", "experiments"]);
+  const PROJECT_INDEX = { browser: 0, voice: 1, experiments: 2, serein: 3 };
+  const VALID_NODES = new Set(Object.keys(PROJECT_INDEX));
   const body = document.body;
   const project = body?.dataset.project || "";
   const params = new URLSearchParams(window.location.search);
@@ -12,7 +13,7 @@
   const state = {
     from: "network",
     node,
-    index: node === "browser" ? 0 : node === "voice" ? 1 : 2,
+    index: PROJECT_INDEX[node] ?? 0,
     hash: "#scene-project-network",
     updated: Date.now()
   };
