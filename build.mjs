@@ -9,8 +9,25 @@ const output = resolve(root, 'public');
 // Rebuild the deployable site from the unchanged GitHub Pages source files.
 rmSync(output, { recursive: true, force: true });
 mkdirSync(output, { recursive: true });
+mkdirSync(resolve(output, 'js'), { recursive: true });
 
-for (const entry of ['index.html', 'beyond-the-portfolio', 'css', 'fonts', 'favicon.svg']) {
+// Phase 14 publishes the approved prototype at the portfolio's root routes.
+// Keep this list explicit so review captures, logs, and local tooling stay out.
+for (const entry of [
+  'index.html',
+  'beyond-the-portfolio',
+  'projects',
+  'css',
+  'fonts',
+  'favicon.svg',
+  'assets',
+  'docs',
+  'js/prototype.js',
+  'js/prototype-scene.js',
+  'js/project.js',
+  'js/experiments.js',
+  'js/vendor'
+]) {
   cpSync(resolve(root, entry), resolve(output, entry), { recursive: true });
 }
 

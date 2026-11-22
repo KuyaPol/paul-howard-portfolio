@@ -3,100 +3,327 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101110">
-  <meta name="description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Beyond the Portfolio — illustrative studies, interaction sketches, and source-backed project records from Paul Howard.">
   <title>Beyond the Portfolio | Paul Howard</title>
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Paul Howard Portfolio">
-  <meta property="og:title" content="Beyond the Portfolio | Paul Howard">
-  <meta property="og:description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Beyond the Portfolio | Paul Howard">
-  <meta name="twitter:description" content="Review proposed software concepts from Paul Howard: personal finance, small business operations, and PC health dashboards with clearly labeled illustrative previews.">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/typography.css?v=13">
+  <link rel="stylesheet" href="../css/prototype.css?v=19">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
-<body class="beyond-page" id="top">
+<body class="lab-page" id="top">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  <div class="space-stage" aria-hidden="true"></div>
+
   <header class="site-header">
     <nav class="nav shell" aria-label="Main navigation">
-      <a class="wordmark" href="../" aria-label="Paul Howard, portfolio">Paul Howard<span aria-hidden="true">.</span></a>
+      <a class="wordmark" href="../index.html" aria-label="Back to portfolio">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>PAUL HOWARD</span>
+        <span class="wordmark-suffix" aria-hidden="true">/ LAB—003</span>
+      </a>
+      <p class="nav-signal" aria-hidden="true">LAB / ILLUSTRATIVE</p>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">Menu</button>
       <div class="nav-links" id="primary-links">
-        <a href="../">Portfolio</a><a href="#concepts">Concepts</a><a class="nav-contact" href="mailto:paulhoward1104@gmail.com">Contact Paul <span aria-hidden="true">↗</span></a>
+        <a href="#scene-lab-hero">Overview</a>
+        <a href="#scene-concepts">Concepts</a>
+        <a href="#scene-project-network">Network</a>
+        <a href="../index.html#scene-contact">Contact ↗</a>
+        <a class="nav-lab" href="../index.html">← Portfolio</a>
       </div>
     </nav>
   </header>
-  <main class="beyond-main" id="main-content">
-    <section class="beyond-hero shell" aria-labelledby="beyond-title">
-      <p class="eyebrow">Paul Howard · Concept studies</p>
-      <div class="beyond-hero-main">
-        <h1 id="beyond-title" data-hero-motion>Beyond the<br>Portfolio.</h1>
-        <div class="beyond-hero-aside" data-hero-motion>
-          <p>These are examples of the digital products and systems I can design and develop. Explore an idea and see what’s possible. Each concept is an illustrative prototype, not a live service.</p>
-          <div class="hero-actions"><a class="button button-primary" href="#concepts">Explore concepts <span aria-hidden="true">↘</span></a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com">Email Paul</a></div>
+
+  <div class="scene-progress" aria-hidden="true">
+    <span class="progress-current">01</span>
+    <span class="progress-sep">/</span>
+    <span class="progress-total">03</span>
+  </div>
+
+  <canvas class="scene-canvas" id="scene-canvas" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="scene-fallback" aria-hidden="true">
+    <span data-fallback="hero"></span>
+    <span data-fallback="work"></span>
+    <span data-fallback="capabilities"></span>
+    <span data-fallback="profile"></span>
+    <span data-fallback="lab"></span>
+    <span data-fallback="concepts"></span>
+    <span data-fallback="network"></span>
+  </div>
+
+  <main class="scene-stage" id="main-content">
+    <section class="scene scene-lab-hero" id="scene-lab-hero" data-scene data-visual="lab" aria-labelledby="lab-title">
+      <div class="scene__inner">
+        <div class="lab-copy">
+          <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> 01 / LAB OVERVIEW · LAB—003</p>
+          <h1 id="lab-title" data-scene-focus tabindex="-1">Exploring ideas <span>beyond the finished product.</span></h1>
+          <p>Signal studies, interaction sketches, local-tool notes, and dedicated project deep dives sit here together. Every tile is labelled as a prototype, concept, or source-backed record.</p>
+          <a class="button button-primary" href="#scene-concepts">View concepts <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="lab-visual" aria-hidden="true">
+          <div class="lab-orbit"></div>
+          <p class="lab-visual-label">FIG. 03 / CONCEPT FIELD · SIGNAL / ACTIVE</p>
         </div>
       </div>
-      <p class="beyond-wordmark" aria-hidden="true">PAUL HOWARD</p>
-      <div class="beyond-rule"><span>SOFTWARE CONCEPTS / PRACTICAL DESIGN</span><span>CONCEPT STUDIES / 2026</span></div>
     </section>
 
-    <section class="concept-overview shell" id="concepts" aria-labelledby="concepts-title">
-      <header class="concept-overview-heading" data-reveal="rise"><p class="eyebrow">Three directions / Proposed concepts</p><h2 id="concepts-title">Choose a concept<br>to explore.</h2></header>
-      <div class="concept-stage">
-        <div class="concept-selector" role="tablist" aria-label="Choose a software concept" aria-orientation="vertical">
-          <button class="concept-tab" type="button" id="tab-finance" role="tab" aria-selected="true" aria-controls="concept-panel-finance" tabindex="0" data-concept="finance"><span>01</span><span>Personal finance<br>&amp; budgets</span><span aria-hidden="true">↗</span></button>
-          <button class="concept-tab" type="button" id="tab-business" role="tab" aria-selected="false" aria-controls="concept-panel-business" tabindex="-1" data-concept="business"><span>02</span><span>Small business<br>operations</span><span aria-hidden="true">↗</span></button>
-          <button class="concept-tab" type="button" id="tab-pc" role="tab" aria-selected="false" aria-controls="concept-panel-pc" tabindex="-1" data-concept="pc"><span>03</span><span>PC performance<br>&amp; system health</span><span aria-hidden="true">↗</span></button>
+    <section class="scene scene-concepts" id="scene-concepts" data-scene data-visual="concepts" aria-labelledby="concepts-title">
+      <div class="scene__inner">
+        <header class="section-head">
+          <p class="section-index">02 / CONCEPTS</p>
+          <h2 id="concepts-title" data-scene-focus tabindex="-1">Experiments in motion, <span>interaction, and software.</span></h2>
+          <p class="section-aside">ILLUSTRATIVE / NOT LIVE SERVICES</p>
+        </header>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <span class="concept-index">C—01 / SIGNAL</span>
+            <div class="concept-visual concept-visual-signal" aria-hidden="true"></div>
+            <h3>Generative studies</h3>
+            <p>Signal fields, orbit systems, and restrained motion. Visual studies, not data products.</p>
+            <button class="study-button" type="button" data-study="study-generative">Explore Study ↗</button>
+            <p class="concept-status">ILLUSTRATIVE — NOT A LIVE SERVICE</p>
+          </article>
+
+          <article class="concept-card">
+            <span class="concept-index">C—02 / INTERACTION</span>
+            <div class="concept-visual concept-visual-interaction" aria-hidden="true"></div>
+            <h3>Interaction sketches</h3>
+            <p>Flip, focus, and state studies for accessible interfaces. Keyboard paths are part of the design.</p>
+            <button class="study-button" type="button" data-study="study-interaction">Explore Study ↗</button>
+            <p class="concept-status">ILLUSTRATIVE — NOT A LIVE SERVICE</p>
+          </article>
+
+          <article class="concept-card">
+            <span class="concept-index">C—03 / LOCAL</span>
+            <div class="concept-visual concept-visual-local" aria-hidden="true"></div>
+            <h3>Local tools / notes</h3>
+            <p>Notes around local-first utilities and Python experiments. No hosted service is implied.</p>
+            <button class="study-button" type="button" data-study="study-local">Explore Study ↗</button>
+            <p class="concept-status">ILLUSTRATIVE — NOT A LIVE SERVICE</p>
+          </article>
         </div>
-        <div class="concept-preview-shell" id="concept-preview" data-concept="finance" data-reveal="media">
-          <div class="preview-heading"><div><span class="preview-label" data-preview-label>CONCEPT 01 / PERSONAL FINANCE</span><h3 data-preview-title>Money, with a clearer view.</h3></div><span class="preview-status">ILLUSTRATIVE PREVIEW · SAMPLE DATA</span></div>
-          <div class="finance-preview concept-screen" data-screen="finance" id="concept-panel-finance" role="tabpanel" aria-labelledby="tab-finance" tabindex="0">
-            <div class="concept-controls finance-controls"><div class="concept-control-group" role="group" aria-label="Sample reporting period"><button class="concept-control" type="button" data-finance-range="month" aria-pressed="true">Monthly</button><button class="concept-control" type="button" data-finance-range="year" aria-pressed="false">Yearly</button></div><label class="concept-range">Sample budget use <input id="finance-budget" type="range" min="0" max="100" step="5" value="60"><output id="finance-budget-output" for="finance-budget">60% used</output></label></div>
-            <div class="finance-summary"><span class="preview-label" data-finance-period>MONTHLY OVERVIEW · SAMPLE</span><strong data-finance-total>$4,820</strong><span data-finance-total-note>Illustrative income</span><div class="finance-mini-bars" data-finance-bars aria-label="Illustrative monthly comparison"><i style="--bar:45%" data-month="45" data-year="52" title="January: illustrative"></i><i style="--bar:62%" data-month="62" data-year="58" title="February: illustrative"></i><i style="--bar:52%" data-month="52" data-year="64" title="March: illustrative"></i><i style="--bar:78%" data-month="78" data-year="71" title="April: illustrative"></i><i style="--bar:66%" data-month="66" data-year="78" title="May: illustrative"></i><i style="--bar:90%" data-month="90" data-year="86" title="June: illustrative"></i></div></div>
-            <div class="finance-side"><div class="preview-unit"><span class="preview-label">SAVINGS GOAL · SAMPLE</span><strong>68%</strong><div class="progress-track"><i></i></div><span>Illustrative progress</span></div><div class="preview-unit"><span class="preview-label">BUDGET VIEW · SAMPLE</span><strong data-finance-budget-view>60% used</strong><div class="progress-track budget-track"><i data-finance-budget-fill style="width:60%"></i></div><span>Adjust the slider to explore</span></div></div>
-            <div class="spend-breakdown"><span class="preview-label">SPENDING BREAKDOWN · SAMPLE</span><p><span>Housing</span><b data-finance-spend="housing">$1,650</b></p><p><span>Daily costs</span><b data-finance-spend="daily">$780</b></p><p><span>Savings</span><b data-finance-spend="savings">$690</b></p><small>Portfolio views, market data and TradingView/API connections are proposed; no live connection.</small></div>
-          </div>
-          <div class="business-preview concept-screen" data-screen="business" id="concept-panel-business" role="tabpanel" aria-labelledby="tab-business" tabindex="0" hidden>
-            <div class="concept-controls business-controls" role="group" aria-label="Sample inventory filters"><button class="concept-control" type="button" data-inventory-filter="all" aria-pressed="true">All items</button><button class="concept-control" type="button" data-inventory-filter="low" aria-pressed="false">Needs attention</button><span class="inventory-count" data-inventory-count>5 sample records</span></div>
-            <aside class="business-sidebar"><span class="preview-label">WORKSPACE</span><strong>Northline<br>Supply</strong><span>Concept workspace</span><a href="#business-concept">Overview</a><a href="#business-concept">Inventory</a><a href="#business-concept">Orders</a></aside>
-            <div class="business-dashboard"><div class="business-stats"><div><span class="preview-label">SALES · SAMPLE</span><strong>$8,640</strong><small>Illustrative month</small></div><div><span class="preview-label">OPEN ORDERS</span><strong>12</strong><small>Sample records</small></div><div><span class="preview-label">STOCK WATCH</span><strong>04</strong><small>Illustrative items</small></div></div><div class="inventory-table"><div class="table-title"><strong>Inventory overview</strong><span>Sample records</span></div><p data-stock="low"><b>Field notebook</b><span>Stock watch</span><small>Illustrative</small></p><p data-stock="in"><b>Canvas tote</b><span>In stock</span><small>Illustrative</small></p><p data-stock="low"><b>Desk planner</b><span>Reorder</span><small>Illustrative</small></p><p data-stock="in"><b>Label rolls</b><span>In stock</span><small>Illustrative</small></p><p data-stock="low"><b>Storage boxes</b><span>Reorder</span><small>Illustrative</small></p></div></div>
-          </div>
-          <div class="pc-preview concept-screen" data-screen="pc" id="concept-panel-pc" role="tabpanel" aria-labelledby="tab-pc" tabindex="0" hidden>
-            <div class="concept-controls pc-controls" role="group" aria-label="Illustrative system metric selector"><button class="concept-control" type="button" data-pc-metric="cpu" aria-pressed="true">CPU</button><button class="concept-control" type="button" data-pc-metric="gpu" aria-pressed="false">GPU</button><button class="concept-control" type="button" data-pc-metric="memory" aria-pressed="false">Memory</button><button class="concept-control" type="button" data-pc-metric="storage" aria-pressed="false">Storage</button></div>
-            <div class="pc-monitor"><div class="pc-monitor-top"><span>LOCAL SYSTEM / CONCEPT VIEW</span><span>ILLUSTRATIVE READINGS</span></div><div class="pc-core"><div class="pc-primary-metric"><span data-pc-metric-label>CPU LOAD</span><strong data-pc-metric-value>42%</strong><small>Illustrative reading</small><div class="pc-history" data-pc-history aria-label="Illustrative CPU history"><i style="--h:38%"></i><i style="--h:46%"></i><i style="--h:42%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:62%"></i><i style="--h:42%"></i><i style="--h:36%"></i></div></div><div class="pc-metrics"><div><span>GPU</span><strong>28%</strong><i><b style="--meter:28%"></b></i></div><div><span>MEMORY</span><strong>11.2 / 32 GB</strong><i><b style="--meter:46%"></b></i></div><div><span>STORAGE</span><strong>68%</strong><i><b style="--meter:68%"></b></i></div></div></div><div class="pc-foot"><span>Temperature monitoring, utilization history, alerts, preferences and downloadable reports are proposed.</span><span>NO DEVICE CONNECTED</span></div></div>
-          </div>
+      </div>
+    </section>
+
+    <section class="scene scene-network" id="scene-project-network" data-scene data-visual="network" aria-labelledby="network-title">
+      <div class="scene__inner">
+        <header class="section-head network-head">
+          <p class="section-index">03 / PROJECT NETWORK</p>
+          <h2 id="network-title" data-scene-focus tabindex="-1">Explore the systems <span>behind the work.</span></h2>
+          <p class="section-aside">06 NODES / DEEP DIVES + STUDY PANELS</p>
+        </header>
+
+        <div class="network-map" data-network-map data-edges="0-2,2-4,0-1,1-3,2-3,2-5,4-5,3-5">
+          <div class="network-grid" aria-hidden="true"></div>
+
+          <svg class="network-threads" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <line x1="34" y1="18" x2="53" y2="28" />
+            <line x1="53" y1="28" x2="82" y2="18" />
+            <line x1="34" y1="18" x2="38" y2="76" />
+            <line x1="38" y1="76" x2="67" y2="74" />
+            <line x1="53" y1="28" x2="67" y2="74" />
+            <line x1="53" y1="28" x2="90" y2="56" />
+            <line x1="82" y1="18" x2="90" y2="56" />
+            <line x1="67" y1="74" x2="90" y2="56" />
+          </svg>
+
+          <button class="network-node" type="button" data-network-node data-node-id="browser" data-node-index="0" data-node-x="34" data-node-y="18" data-node-depth="-1.2" data-destination="../projects/browser-tracker.html?from=network&amp;node=browser" data-preview-kicker="P—01 / DEEP DIVE" data-preview-title="Browser Tracker" data-preview-meta="SOURCE-VERIFIED" data-preview-copy="Manifest V3 extension, local dashboard bridge, and consent-gated data path. Opens the full source-verified project documentation." aria-label="Browser Tracker, source-verified local prototype. Opens full project documentation.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">P—01</span>
+            <span class="node-name">Browser Tracker</span>
+            <span class="node-tag">DEEP DIVE</span>
+            <span class="node-summary">Manifest V3 extension and local dashboard. Opens full project documentation.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="voice" data-node-index="1" data-node-x="38" data-node-y="76" data-node-depth="0.8" data-destination="../projects/live-voice-to-text.html?from=network&amp;node=voice" data-preview-kicker="P—02 / DEEP DIVE" data-preview-title="Live Voice to Text" data-preview-meta="CONCEPT RECORD" data-preview-copy="A labelled concept for turning live voice input into text, with no transcription engine in this repository. Opens full concept documentation." aria-label="Live Voice to Text, concept record. Opens full concept documentation.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">P—02</span>
+            <span class="node-name">Live Voice to Text</span>
+            <span class="node-tag">CONCEPT</span>
+            <span class="node-summary">Labelled concept preview. Opens full concept documentation.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="experiments" data-node-index="2" data-node-x="53" data-node-y="28" data-node-depth="-0.5" data-destination="../projects/interactive-experiments.html?from=network&amp;node=experiments" data-preview-kicker="P—03 / DIGITAL LAB" data-preview-title="Interactive Experiments" data-preview-meta="SOURCE-VERIFIED" data-preview-copy="A working lab record of the prototypes' motion, geometry, and interaction techniques, with live lightweight demonstrations. Opens full project documentation." aria-label="Interactive Experiments, digital laboratory. Opens full project documentation with interactive demonstrations.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">P—03</span>
+            <span class="node-name">Interactive Experiments</span>
+            <span class="node-tag">DIGITAL LAB</span>
+            <span class="node-summary">Motion, geometry, and interaction techniques. Opens the interactive lab record.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="generative" data-node-index="3" data-node-x="67" data-node-y="74" data-node-depth="1.1" data-target-dialog="study-generative" data-preview-kicker="STUDY C—01" data-preview-title="Generative studies" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Signal fields, orbit systems, and restrained motion. Opens the existing study documentation here in the lab." aria-label="Generative studies, study C—01. Signal fields, orbit systems, and restrained motion. Opens the existing study documentation.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">C—01</span>
+            <span class="node-name">Generative studies</span>
+            <span class="node-tag">SIGNAL</span>
+            <span class="node-summary">Signal fields, orbit systems, restrained motion. Opens the study notes panel.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="interaction" data-node-index="4" data-node-x="82" data-node-y="18" data-node-depth="-0.9" data-target-dialog="study-interaction" data-preview-kicker="STUDY C—02" data-preview-title="Interaction sketches" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Flip, focus, and state studies for accessible interfaces, with keyboard paths as part of the design. Opens the existing study documentation here in the lab." aria-label="Interaction sketches, study C—02. Focus and state studies with keyboard paths. Opens the existing study documentation.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">C—02</span>
+            <span class="node-name">Interaction sketches</span>
+            <span class="node-tag">INTERACTION</span>
+            <span class="node-summary">Focus and state studies with keyboard paths. Opens the study notes panel.</span>
+          </button>
+
+          <button class="network-node" type="button" data-network-node data-node-id="local" data-node-index="5" data-node-x="90" data-node-y="56" data-node-depth="0.3" data-target-dialog="study-local" data-preview-kicker="STUDY C—03" data-preview-title="Local tools / notes" data-preview-meta="ILLUSTRATIVE STUDY" data-preview-copy="Notes around local-first utilities and Python experiments. No hosted service is implied. Opens the existing study documentation here in the lab." aria-label="Local tools and notes, study C—03. Local-first utility notes with no hosted service. Opens the existing study documentation.">
+            <span class="node-pin" aria-hidden="true"></span>
+            <span class="node-index">C—03</span>
+            <span class="node-name">Local tools / notes</span>
+            <span class="node-tag">LOCAL</span>
+            <span class="node-summary">Local-first utility notes with no hosted service. Opens the study notes panel.</span>
+          </button>
+
+          <aside class="network-detail" id="network-detail" aria-live="polite">
+            <p class="network-detail__kicker">NETWORK / IDLE</p>
+            <p class="network-detail__title">Choose a node</p>
+            <p class="network-detail__copy">Three project nodes open dedicated deep-dive documentation, including the Interactive Experiments lab. Three studies open their notes here.</p>
+            <p class="network-detail__action">HOVER OR FOCUS TO PREVIEW · ACTIVATE TO OPEN</p>
+          </aside>
         </div>
-        <div class="concept-stage-note" data-reveal="slide"><span>INTERACTIVE CONCEPT PREVIEW</span><span><a href="#finance-concept" data-concept-detail-link>Open concept details ↓</a></span></div>
+
+        <p class="scene-footer">
+          <span>PAUL HOWARD / SIGNAL SYSTEMS</span>
+          <span>PROJECT NETWORK · LAB—003</span>
+          <a href="../index.html#scene-contact">Contact ↗</a>
+          <a href="#scene-lab-hero">Back to top ↑</a>
+        </p>
       </div>
     </section>
-
-    <section class="concept-detail finance-detail" id="finance-concept" aria-labelledby="finance-title" data-concept-detail="finance">
-      <div class="concept-detail-inner shell">
-        <header class="detail-heading" data-reveal="rise"><p class="eyebrow">Concept 01 / Personal finance</p><h2 id="finance-title">Make room<br>for the next move.</h2><p>Track income, expenses, and savings goals, then review spending and portfolio trends in one proposed dashboard.</p></header>
-        <div class="detail-content" data-reveal="slide"><div class="detail-features"><h3>Designed to bring the picture together.</h3><ul><li>Monthly income and expenses</li><li>Savings goals and budget limits</li><li>Yearly analytics and spending views</li><li>Portfolio tracking and market visualization</li><li>Optional market data or TradingView connection, proposed</li></ul></div><div class="detail-aside"><p>Investment views are for tracking and visualization, not financial advice or automatic trading. Alerts and notifications are proposed features.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=Personal%20Finance%20Tracker">Discuss a finance tracker <span aria-hidden="true">↗</span></a></div></div>
-      </div>
-    </section>
-
-    <section class="concept-detail business-detail" id="business-concept" aria-labelledby="business-title" data-concept-detail="business">
-      <div class="business-layout shell">
-        <aside class="business-intro" data-reveal="slide"><p class="eyebrow">Concept 02 / Daily operations</p><h2 id="business-title">Small Business<br>Management System</h2><p>Bring everyday stock, sales, orders, customer records, and expenses into one proposed administration dashboard.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=Small%20Business%20System">Discuss a business system <span aria-hidden="true">↗</span></a></aside>
-        <div class="business-details" data-reveal="rise"><div class="business-row"><span>01</span><div><h3>Operations</h3><p>Inventory, orders, and customer records in one place.</p><small>Low-stock notifications are proposed.</small></div></div><div class="business-row"><span>02</span><div><h3>Sales &amp; expenses</h3><p>Review sales, expenses, and profit trends.</p><small>Representative values are labeled in the preview.</small></div></div><div class="business-row"><span>03</span><div><h3>Reporting</h3><p>Monthly performance summaries for day-to-day decisions.</p><small>Email notifications and reports are proposed features.</small></div></div></div>
-      </div>
-    </section>
-
-    <section class="concept-detail pc-detail" id="pc-health-concept" aria-labelledby="pc-title" data-concept-detail="pc">
-      <div class="pc-detail-inner shell">
-        <header class="pc-detail-heading" data-reveal="rise"><p class="eyebrow">Concept 03 / Expanded PC Tracker</p><h2 id="pc-title">Know what your<br>system is doing.</h2></header>
-        <div class="pc-detail-copy" data-reveal="slide"><p>An expanded PC Tracker concept for desktop-first monitoring and system health review.</p><p>CPU, GPU, memory, storage, temperature, utilization history, alerts, preferences, and downloadable reports are proposed features. They are not claims about the current PC Tracker.</p><a class="text-link" href="#concepts" data-return-to-concepts>← Back to concept selection</a><a class="button button-secondary" href="mailto:paulhoward1104@gmail.com?subject=PC%20Health%20Dashboard">Discuss a PC health dashboard <span aria-hidden="true">↗</span></a></div>
-      </div>
-    </section>
-
-    <section class="beyond-contact shell" aria-labelledby="beyond-contact-title" data-reveal="media"><div class="contact-marquee" aria-hidden="true"><div class="contact-marquee-track"><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div><div class="contact-marquee-group"><span>Build something useful</span><span>Make the next idea real</span><span>Build something useful</span></div></div></div><div class="beyond-contact-center"><p class="eyebrow">Have another direction in mind?</p><h2 id="beyond-contact-title">Let’s talk.</h2><a class="button button-primary" href="mailto:paulhoward1104@gmail.com">Email Paul <span aria-hidden="true">↗</span></a></div></section>
   </main>
-  <footer class="beyond-footer shell"><a class="wordmark" href="../">Paul Howard<span aria-hidden="true">.</span></a><a href="../" data-page-exit="to-main">Back to portfolio <span aria-hidden="true">↗</span></a><span>Concept studies · <span id="year">2026</span></span></footer>
-  <script type="module" src="../js/app.js"></script>
+
+  <dialog class="study-dialog" id="study-generative" aria-labelledby="study-generative-title">
+    <div class="dialog-head">
+      <div>
+        <p class="section-index">STUDY C—01 / DOCUMENTATION</p>
+        <h2 id="study-generative-title">Generative studies</h2>
+      </div>
+      <button class="dialog-close" type="button" aria-label="Close study documentation">×</button>
+    </div>
+    <div class="study-visual concept-visual concept-visual-signal" aria-hidden="true"></div>
+    <div class="study-body">
+      <section>
+        <h3>WHAT IT IS</h3>
+        <p>A visual study built from simple shapes: rings, grids, panels, and small points of light. It is a piece of decorative motion, not a chart, and the shapes do not stand for measured data.</p>
+      </section>
+      <section>
+        <h3>PURPOSE</h3>
+        <p>The study tests how much depth a page can gain from a small set of geometry and lighting rules, without bright effects or large assets. The aim is a sense of space that supports the writing rather than competing with it.</p>
+      </section>
+      <section>
+        <h3>HOW IT WORKS</h3>
+        <p>On this site one Three.js renderer draws every scene on a single shared canvas. Each scene has its own group of shapes; when you navigate, the outgoing group fades while the incoming group appears. Ring rotation and camera position ease toward the pointer, so movement is subtle instead of abrupt. Rendering is capped, pauses after inactivity or when the tab is hidden, and stops entirely for reduced motion or smaller devices, which use a static gradient instead.</p>
+        <p>The wider portfolio has a separate Three.js space scene with a grid, orbit rings, and wave bars. Its scroll-linked timing is coordinated with GSAP ScrollTrigger and the Web Animations API.</p>
+      </section>
+      <section>
+        <h3>TECHNOLOGIES</h3>
+        <p>Three.js and WebGL for the geometry, JavaScript for the scene states, CSS transforms and opacity for the crossfade, plus GSAP ScrollTrigger and the Web Animations API in the portfolio's scroll motion. No second 3D library was added.</p>
+      </section>
+      <section>
+        <h3>INTERACTION</h3>
+        <p>You can move the pointer to gently shift the field, move between scenes, and observe a different arrangement in each one. There are no controls for changing values, and nothing on screen represents live measurements.</p>
+      </section>
+      <section>
+        <h3>RELEVANCE</h3>
+        <p>The same approach suits product pages, launch pages, and case studies that need a quiet spatial layer behind real content. Because the renderer is shared and gated by device and motion settings, it can be reused without loading a heavy animation stack into every section.</p>
+      </section>
+      <section>
+        <h3>CURRENT STATUS</h3>
+        <p>Implemented here: the shared-canvas scenes, pointer response, idle and hidden-page pause, and static fallbacks. Implemented separately in the portfolio: the space scene and scroll-linked motion. Proposed only: packaging these studies as a reusable component or binding them to real data.</p>
+      </section>
+      <a class="text-link study-doc-link" href="../docs/generative-studies.md">Read the study notes ↗</a>
+    </div>
+  </dialog>
+
+  <dialog class="study-dialog" id="study-interaction" aria-labelledby="study-interaction-title">
+    <div class="dialog-head">
+      <div>
+        <p class="section-index">STUDY C—02 / DOCUMENTATION</p>
+        <h2 id="study-interaction-title">Interaction sketches</h2>
+      </div>
+      <button class="dialog-close" type="button" aria-label="Close study documentation">×</button>
+    </div>
+    <div class="study-visual concept-visual concept-visual-interaction" aria-hidden="true"></div>
+    <div class="study-body">
+      <section>
+        <h3>WHAT IT IS</h3>
+        <p>Small interface studies about state and focus: details panels, press-to-choose controls, and a two-sided profile card in the main portfolio. Each one is a way to test an interaction pattern rather than a finished product feature.</p>
+      </section>
+      <section>
+        <h3>PURPOSE</h3>
+        <p>These sketches check whether an interaction that looks elaborate still has a plain keyboard path, a visible focus state, and an honest label. The aim is that motion never hides how a control actually works.</p>
+      </section>
+      <section>
+        <h3>HOW IT WORKS</h3>
+        <p>Details and documentation panels use the browser's native dialog element. Opening one places it in the top layer, keeps keyboard focus inside, dims and blurs the scene behind it, and supports Escape; the close handler returns focus to the button that opened it. On the deployed concept page, three tabs use <strong>aria-selected</strong>, arrow keys, Home, and End to switch panels, while finance range, stock filter, and PC metric buttons update sample text and bars in place and mark the chosen button with <strong>aria-pressed</strong>. The main portfolio's profile card swaps faces by changing a state attribute and mirroring it with <strong>aria-expanded</strong>, <strong>aria-hidden</strong>, and <strong>inert</strong> so only the visible face can be reached.</p>
+      </section>
+      <section>
+        <h3>TECHNOLOGIES</h3>
+        <p>HTML dialog elements, JavaScript event handlers, CSS transforms and opacity, and ARIA state attributes including aria-pressed, aria-expanded, aria-hidden, and inert. The portfolio's reveals also use the Web Animations API and GSAP ScrollTrigger.</p>
+      </section>
+      <section>
+        <h3>INTERACTION</h3>
+        <p>You can open and close detail panels, press Escape, move focus with Tab, switch concept tabs with arrow keys, and choose a sample range, stock filter, or PC metric on the deployed concept page. The profile scene is a static presentation with no flip control.</p>
+      </section>
+      <section>
+        <h3>RELEVANCE</h3>
+        <p>Useful for settings panels, onboarding, dashboards, and documentation overlays where a modal must remain keyboard-safe. The pressed-button pattern applies to any segmented control or filter that changes what is shown below it.</p>
+      </section>
+      <section>
+        <h3>CURRENT STATUS</h3>
+        <p>Implemented: the prototype's detail and documentation panels, the concept page's sample toggles, the production profile flip, and reduced-motion handling. Proposed: collecting these patterns into a shared component library.</p>
+      </section>
+      <a class="text-link study-doc-link" href="../docs/interaction-sketches.md">Read the study notes ↗</a>
+    </div>
+  </dialog>
+
+  <dialog class="study-dialog" id="study-local" aria-labelledby="study-local-title">
+    <div class="dialog-head">
+      <div>
+        <p class="section-index">STUDY C—03 / DOCUMENTATION</p>
+        <h2 id="study-local-title">Local tools / notes</h2>
+      </div>
+      <button class="dialog-close" type="button" aria-label="Close study documentation">×</button>
+    </div>
+    <div class="study-visual concept-visual concept-visual-local" aria-hidden="true"></div>
+    <div class="study-body">
+      <section>
+        <h3>WHAT IT IS</h3>
+        <p>A set of local-first utility ideas and the notes around them: a browser activity tracker, sample dashboards for finance and PC health, and documentation about keeping data on the device that produced it.</p>
+      </section>
+      <section>
+        <h3>PURPOSE</h3>
+        <p>The goal is to explore useful tools that need no account and no hosted service, and to show clearly which figures are illustrative samples and which come from a visitor's own local extension.</p>
+      </section>
+      <section>
+        <h3>HOW IT WORKS</h3>
+        <p>The Browser Tracker is a Manifest V3 extension installed unpacked in the browser. Its manifest requests storage, alarms, idle, and tabs permissions to estimate active foreground time and keep per-domain totals locally. The portfolio dashboard stays empty until sharing is explicitly enabled in the extension and a local connection is made; it does not invent visitor statistics. The concept page's finance and PC-metric panels use fixed sample values switched by buttons and are labelled as samples.</p>
+      </section>
+      <section>
+        <h3>TECHNOLOGIES</h3>
+        <p>JavaScript, Manifest V3, browser storage APIs including storage.local and storage.session, the alarms, idle, and tabs APIs, and local message connections between the extension and the page. Python is listed in the portfolio for a desktop interface and a voice-to-text concept, but no Python source is present in this repository, so those are presented as concepts rather than verified builds.</p>
+      </section>
+      <section>
+        <h3>INTERACTION</h3>
+        <p>You can install the extension locally, switch sharing on, connect it to the dashboard, and change the sample range or metric on the concept page. There is no sign-up, hosted account, or invented live data path.</p>
+      </section>
+      <section>
+        <h3>RELEVANCE</h3>
+        <p>Applies to internal tools, client dashboards, and privacy-sensitive products where data should stay on a device. It also shows how to demonstrate an interface with clearly labelled sample data before a backend exists.</p>
+      </section>
+      <section>
+        <h3>CURRENT STATUS</h3>
+        <p>Implemented locally: the extension, the local dashboard connection, the sample concept toggles, and the extension documentation. Concept only: the Claude-assisted voice-to-text script and the Python desktop interface. No hosted service is offered.</p>
+      </section>
+      <a class="text-link study-doc-link" href="../docs/local-tools-notes.md">Read the study notes ↗</a>
+    </div>
+  </dialog>
+
+  <script src="../js/prototype.js"></script>
 </body>
 </html>
