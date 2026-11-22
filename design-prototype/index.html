@@ -35,6 +35,7 @@
         <a href="#scene-profile">Profile</a>
         <a href="#scene-contact">Contact</a>
         <a class="nav-lab" href="beyond-the-portfolio.html">Beyond <span aria-hidden="true">↗</span></a>
+        <button class="nav-tour-replay" type="button" data-tour-replay>Replay Site Tour</button>
       </div>
     </nav>
   </header>
@@ -182,6 +183,10 @@
           <a class="button button-primary view-more-link" href="about/" data-page-fade>View More <span aria-hidden="true">→</span></a>
         </div>
 
+        <div class="profile-stage" data-profile-stage aria-hidden="true">
+          <span class="profile-static"></span>
+        </div>
+
         <div class="profile-card" aria-label="Profile summary">
           <span class="profile-card-label">PROFILE / BACKGROUND</span>
           <p class="profile-card-lead">Practical software, built close to the people who use it.</p>
@@ -226,6 +231,34 @@
       </div>
     </section>
   </main>
+
+  <section class="tour-welcome" id="tour-welcome" role="dialog" aria-modal="false" aria-labelledby="tour-welcome-title" aria-describedby="tour-welcome-copy" hidden>
+    <button class="tour-welcome-close" type="button" data-tour-no aria-label="Dismiss welcome">×</button>
+    <h2 id="tour-welcome-title">Hello, Visitor.</h2>
+    <p id="tour-welcome-copy">Are you new here? I can show you around.</p>
+    <div class="tour-welcome-actions">
+      <button class="button button-primary" type="button" data-tour-yes>Yes, I'm new</button>
+      <button class="button button-secondary" type="button" data-tour-no>No, I'll explore</button>
+    </div>
+  </section>
+
+  <div class="visitor-tour" id="visitor-tour" hidden>
+    <div class="tour-spotlight" data-tour-spotlight aria-hidden="true"></div>
+    <section class="tour-panel" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-copy">
+      <div class="tour-progress" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <p class="tour-count" data-tour-count>01 / 07</p>
+      <h2 id="tour-title" data-tour-title tabindex="-1">Start at SIGNAL</h2>
+      <p id="tour-copy" data-tour-copy></p>
+      <div class="tour-actions">
+        <button class="tour-button tour-back" type="button" data-tour-back>Back</button>
+        <button class="tour-button tour-skip" type="button" data-tour-skip>Skip Tour</button>
+        <button class="tour-button tour-next" type="button" data-tour-next>Next</button>
+      </div>
+    </section>
+    <p class="sr-only" data-tour-live aria-live="polite"></p>
+  </div>
 
   <dialog class="detail-dialog" id="dialog-browser" aria-labelledby="dialog-browser-title">
     <div class="dialog-head">
@@ -289,6 +322,7 @@
   </dialog>
 
   <script src="prototype.js?v=3"></script>
+  <script src="visitor-tour.js?v=1"></script>
   <script src="site-fade.js?v=1"></script>
 </body>
 </html>

@@ -319,6 +319,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
     uniforms: {
       uOpacity: { value: 1 },
       uTime: uniforms.time,
+      uLimeMix: { value: 0.34 },
       uColorA: { value: new THREE.Color(NETWORK_CYAN) },
       uColorB: { value: new THREE.Color(LIME) }
     },
@@ -335,6 +336,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
     fragmentShader: `
       uniform float uOpacity;
       uniform float uTime;
+      uniform float uLimeMix;
       uniform vec3 uColorA;
       uniform vec3 uColorB;
       varying vec3 vWorldNormal;
@@ -343,7 +345,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
         vec3 normal = normalize(vWorldNormal);
         vec3 viewDir = normalize(cameraPosition - vWorldPosition);
         float fresnel = pow(1.0 - abs(dot(normal, viewDir)), 2.6);
-        float limeEdge = smoothstep(0.35, 0.95, normal.y) * 0.34;
+        float limeEdge = smoothstep(0.35, 0.95, normal.y) * uLimeMix;
         vec3 color = mix(uColorA, uColorB, limeEdge);
         float drift = 0.92 + 0.08 * sin(uTime * 0.28 + normal.y * 4.0);
         gl_FragColor = vec4(color * drift, fresnel * uOpacity * 0.38);
@@ -362,6 +364,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
     const multiplier = Number.isFinite(group.userData.fadeMultiplier)
       ? group.userData.fadeMultiplier
       : 1;
+    group.userData.fadeFactor = factor * multiplier;
     group.userData.materials.forEach((material) => {
       const value = material.userData.baseOpacity * factor * multiplier;
       material.opacity = value;
@@ -1086,149 +1089,251 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
 
   const buildProfile = () => {
     const group = createGroup("profile");
+    /* Phase 18 — KINETIC IDENTITY / LIQUID GLASS. The top group keeps the shared
+       crossfade contract; this nested form owns the one-shot morph and pointer
+       response so transition scale never overwrites DOM-aware framing. */
+    const form = new THREE.Group();
+    form.userData.materials = group.userData.materials;
+    const signal = new THREE.Group();
+    group.add(form);
+    form.add(signal);
 
-    /* Phase 17 — IDENTITY CORE / CONNECTED EXPERIENCE.
-       One translucent shell, one lit core, four instanced modules, and thin
-       instanced links. Every moving part updates existing buffers only. */
+    const profileUniforms = { time: { value: 0 } };
+    /* Authored milestones are wall-clock based, so entry/morph/settle keep their
+       0-900 / 900-2400 / 2400-4000ms timing even on a slow or throttled frame. */
+    const state = { elapsed: 0, startedAt: performance.now() };
+    const lastPointer = { x: 99, y: 99 };
+    const fade = () => Number.isFinite(group.userData.fadeFactor)
+      ? group.userData.fadeFactor
+      : 1;
+
+    const shellMaterial = glassMaterial(group, 0x4b5c53, {
+      transmission: 0.82, opacity: 0.92, thickness: 2.1,
+      roughness: 0.07, emissiveIntensity: 0.08
+    });
+    const innerMaterial = metalMaterial(group, 0x1b2c26, {
+      metalness: 0.94, roughness: 0.14, emissive: NETWORK_CYAN,
+      emissiveIntensity: 0.16, opacity: 0.86
+    });
+    const shardMaterial = metalMaterial(group, 0x6d8075, {
+      metalness: 0.9, roughness: 0.2, emissive: NETWORK_CYAN,
+      emissiveIntensity: 0.16, opacity: 0.95
+    });
+    const shardAccentMaterial = accentMaterial(group, NETWORK_CYAN, 0.72, 0.64);
+    const signalCyanMaterial = accentMaterial(group, NETWORK_CYAN, 0.62, 0.58);
+    const signalLimeMaterial = accentMaterial(group, LIME, 0.52, 0.54);
+    const rimMaterial = networkAtmosphereMaterial(group, profileUniforms);
+    rimMaterial.uniforms.uLimeMix.value = 0.72;
+
     const shell = new THREE.Mesh(
-      keep(new THREE.IcosahedronGeometry(0.86, quality.detail > 0.7 ? 2 : 1)),
-      glassMaterial(group, NETWORK_CYAN, {
-        transmission: 0.84, opacity: 0.24, thickness: 1.7, roughness: 0.16
-      })
+      sculptedGeometry(1.42, 3, 1.7, [1.08, 0.94, 0.92]),
+      shellMaterial
     );
-    group.add(shell);
+    const inner = new THREE.Mesh(
+      sculptedGeometry(1.02, 2, 3.4, [0.96, 1.08, 0.88]),
+      innerMaterial
+    );
+    const rim = new THREE.Mesh(shell.geometry, rimMaterial);
+    rim.scale.setScalar(1.055);
+    form.add(rim, shell, inner);
 
     const core = new THREE.Mesh(
-      keep(new THREE.OctahedronGeometry(0.44, quality.detail > 0.7 ? 1 : 0)),
-      metalMaterial(group, 0x14242d, {
-        metalness: 0.94, roughness: 0.18, emissive: LIME,
-        emissiveIntensity: 0.22, opacity: 0.96
+      keep(new THREE.IcosahedronGeometry(0.38, quality.detail > 0.7 ? 2 : 1)),
+      metalMaterial(group, 0x0d1411, {
+        metalness: 0.98, roughness: 0.1, emissive: LIME,
+        emissiveIntensity: 0.18, opacity: 0.92
       })
     );
-    group.add(core);
-
     const heart = new THREE.Mesh(
-      keep(new THREE.IcosahedronGeometry(0.17, quality.detail > 0.7 ? 1 : 0)),
-      accentMaterial(group, LIME, 0.94, 1.05)
+      keep(new THREE.IcosahedronGeometry(0.13, quality.detail > 0.7 ? 1 : 0)),
+      accentMaterial(group, LIME, 0.96, 1.2)
     );
-    group.add(heart);
+    form.add(core, heart);
 
-    const orbit = new THREE.Mesh(
-      keep(new THREE.RingGeometry(1.16, 1.18, quality.detail > 0.7 ? 56 : 32)),
-      accentMaterial(group, NETWORK_CYAN, 0.38, 0.5)
-    );
-    group.add(orbit);
+    /* Sixteen elements on three concentric tiers: structured at entry, folded
+       into the glass at settle. All transforms reuse the same instance buffers. */
+    const shards = [];
+    const shardCount = 16;
+    for (let i = 0; i < shardCount; i += 1) {
+      const tier = i < 6 ? 0 : i < 11 ? 1 : 2;
+      const angle = i * 2.399963 + tier * 0.42;
+      const radius = [1.66, 1.34, 1.05][tier] + random() * 0.12;
+      shards.push({
+        angle,
+        radius,
+        endRadius: radius * (0.28 + random() * 0.06),
+        depth: (random() - 0.5) * 0.72,
+        length: [0.42, 0.34, 0.27][tier] + random() * 0.09,
+        width: 0.1 + random() * 0.055,
+        phase: random() * Math.PI * 2
+      });
+    }
 
-    const modulePositions = [
-      [0, 1.95, -0.14],
-      [0, -1.95, 0.2],
-      [-2.18, 0, -0.46],
-      [2.18, 0, 0.3]
-    ];
-    const moduleScales = [
-      [0.92, 0.46, 0.5],
-      [0.92, 0.46, 0.5],
-      [0.5, 0.76, 0.5],
-      [0.5, 0.76, 0.5]
-    ];
-    const moduleGeometry = keep(new THREE.BoxGeometry(1, 1, 1));
-    const modules = makeInstances(
-      group,
-      moduleGeometry,
-      metalMaterial(group, 0x1b2b36, {
-        metalness: 0.92, roughness: 0.24, emissive: NETWORK_CYAN,
-        emissiveIntensity: 0.08, opacity: 0.9
-      }),
-      modulePositions.length,
-      (dummy, i) => {
-        const position = modulePositions[i];
-        const scale = moduleScales[i];
-        dummy.position.set(position[0], position[1], position[2]);
-        dummy.rotation.set(0.06, i % 2 ? -0.18 : 0.18, 0);
-        dummy.scale.set(scale[0], scale[1], scale[2]);
-      }
-    );
+    const shardGeometry = keep(new THREE.IcosahedronGeometry(1, 0));
+    const dummy = new THREE.Object3D();
 
-    const accents = makeInstances(
-      group,
-      moduleGeometry,
-      accentMaterial(group, NETWORK_CYAN, 0.62, 0.62),
-      modulePositions.length,
-      (dummy, i) => {
-        const position = modulePositions[i];
-        const scale = moduleScales[i];
-        dummy.position.set(position[0], position[1], position[2] + scale[2] * 0.5 + 0.014);
-        dummy.rotation.set(0.06, i % 2 ? -0.18 : 0.18, 0);
-        dummy.scale.set(scale[0] * 0.62, scale[1] * 0.12, 0.02);
-      }
-    );
+    const pointerOffset = { x: 0, y: 0 };
+    const applyShard = (target, i, morph, accent = false) => {
+      const shard = shards[i];
+      const contract = ease(morph);
+      const radius = lerp(shard.radius, shard.endRadius, contract);
+      const shrink = lerp(1, 0.46, contract);
+      const pulse = 1 + Math.sin(state.elapsed * 0.7 + shard.phase) * 0.012;
+      target.position.set(
+        Math.cos(shard.angle) * radius + pointerOffset.x * 0.018 * (1 - contract),
+        Math.sin(shard.angle) * radius * 0.9 - pointerOffset.y * 0.014 * (1 - contract),
+        lerp(shard.depth, shard.depth * 0.4, contract) + (accent ? 0.035 : 0)
+      );
+      target.rotation.set(
+        0.12 + Math.sin(shard.phase) * 0.06,
+        0.08,
+        shard.angle - Math.PI / 2 + Math.sin(shard.phase) * 0.04
+      );
+      target.scale.set(
+        shard.width * shrink * (accent ? 0.46 : 1),
+        shard.length * shrink * pulse * (accent ? 0.3 : 1),
+        shard.width * shrink * (accent ? 0.3 : 0.82)
+      );
+    };
+
+    const placeShard = (mesh, i, morph, accent = false) => {
+      applyShard(dummy, i, morph, accent);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    };
+
+    const modules = makeInstances(form, shardGeometry, shardMaterial, shardCount,
+      (instance, i) => applyShard(instance, i, 0));
+    const accents = makeInstances(form, shardGeometry, shardAccentMaterial, shardCount,
+      (instance, i) => applyShard(instance, i, 0, true));
 
     const cyanLinks = [];
     const limeLinks = [];
-    for (let i = 0; i < modulePositions.length; i += 1) {
-      const position = modulePositions[i];
-      const links = i % 2 === 0 ? limeLinks : cyanLinks;
-      links.push([
-        [position[0] * 0.22, position[1] * 0.22, position[2] * 0.22],
-        [position[0] * 0.86, position[1] * 0.86, position[2] * 0.86]
-      ]);
+    for (let i = 0; i < 4; i += 1) {
+      const angle = i * Math.PI / 2 + Math.PI / 4;
+      const target = [Math.cos(angle) * 1.06, Math.sin(angle) * 0.94, 0.02];
+      (i % 2 === 0 ? limeLinks : cyanLinks).push([[0, 0, 0.06], target]);
     }
-    makeTubes(group, cyanLinks, accentMaterial(group, NETWORK_CYAN, 0.44, 0.58), 0.014);
-    makeTubes(group, limeLinks, accentMaterial(group, LIME, 0.38, 0.52), 0.012);
+    makeTubes(signal, cyanLinks, signalCyanMaterial, 0.013);
+    makeTubes(signal, limeLinks, signalLimeMaterial, 0.011);
 
-    const beads = makeParticles(group, particleCount(40), 0.68, 0.052, (i, positions, seeds) => {
-      seeds[i * 4] = i % modulePositions.length;
+    const beads = makeParticles(form, particleCount(36), 0.64, 0.044, (i, positions, seeds) => {
+      seeds[i * 4] = i % 4;
       seeds[i * 4 + 1] = random();
       seeds[i * 4 + 2] = random();
-      seeds[i * 4 + 3] = 0.08 + random() * 0.1;
+      seeds[i * 4 + 3] = 0.06 + random() * 0.08;
     }, [NETWORK_CYAN, NETWORK_CYAN, LIME]);
 
-    const dummy = new THREE.Object3D();
+    const signalAngles = [Math.PI / 4, Math.PI * 0.75, Math.PI * 1.25, Math.PI * 1.75];
 
-    group.userData.spin = -0.014;
-    group.userData.float = 0.028;
-    group.userData.animate = (dt, time, pointer) => {
-      shell.rotation.y = time * 0.055;
-      shell.rotation.x = Math.sin(time * 0.18) * 0.07;
-      core.rotation.y += dt * 0.16;
-      core.rotation.x = Math.sin(time * 0.24) * 0.1;
-      heart.scale.setScalar(0.9 + Math.sin(time * 1.25) * 0.09);
-      orbit.quaternion.copy(camera.quaternion);
-      orbit.rotateZ(time * 0.026);
+    const relayout = () => {
+      const scene = document.querySelector(".scene-profile");
+      const copy = scene?.querySelector(".profile-copy");
+      const card = scene?.querySelector(".profile-card");
+      const stage = scene?.querySelector("[data-profile-stage]");
+      if (!scene || !copy || !card || !view.halfHeight) return;
 
-      for (let i = 0; i < modulePositions.length; i += 1) {
-        const position = modulePositions[i];
-        const scale = moduleScales[i];
-        const pulse = 1 + Math.sin(time * 0.7 + i * 1.6) * 0.014;
-        dummy.position.set(
-          position[0] + pointer.x * 0.022,
-          position[1] - pointer.y * 0.016,
-          position[2]
-        );
-        dummy.rotation.set(0.06, (i % 2 ? -0.18 : 0.18) + Math.sin(time * 0.2 + i) * 0.018, 0);
-        dummy.scale.set(scale[0] * pulse, scale[1] * pulse, scale[2]);
-        dummy.updateMatrix();
-        modules.setMatrixAt(i, dummy.matrix);
+      const copyRect = copy.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const stageRect = stage?.getBoundingClientRect();
+      const centerX = stageRect && stageRect.width > 0
+        ? (stageRect.left + stageRect.right) / 2
+        : (copyRect.right + cardRect.left) / 2;
+      const centerY = stageRect && stageRect.height > 0
+        ? (stageRect.top + stageRect.bottom) / 2
+        : window.innerHeight / 2;
+      const unitPixels = window.innerHeight / (2 * view.halfHeight);
+      const rootScale = root.scale.x || quality.scale;
+      group.userData.baseX = (centerX - window.innerWidth / 2) / (unitPixels * rootScale);
+      group.userData.baseY = -(centerY - window.innerHeight / 2) / (unitPixels * rootScale);
 
-        dummy.position.z = position[2] + scale[2] * 0.5 + 0.014;
-        dummy.scale.set(scale[0] * 0.62 * pulse, scale[1] * 0.12, 0.02);
-        dummy.updateMatrix();
-        accents.setMatrixAt(i, dummy.matrix);
-      }
-      modules.instanceMatrix.needsUpdate = true;
-      accents.instanceMatrix.needsUpdate = true;
-
-      const beadPositions = beads.positions;
-      for (let i = 0; i < beads.count; i += 1) {
-        const index = i * 3;
-        const position = modulePositions[Math.floor(beads.seeds[i * 4])];
-        const t = (beads.seeds[i * 4 + 1] + time * beads.seeds[i * 4 + 3]) % 1;
-        beadPositions[index] = lerp(0, position[0] * 0.86, t) + pointer.x * 0.018 * (1 - t);
-        beadPositions[index + 1] = lerp(0, position[1] * 0.86, t) - pointer.y * 0.014 * (1 - t);
-        beadPositions[index + 2] = lerp(0, position[2] * 0.86, t) + Math.sin(t * Math.PI) * 0.1;
-      }
-      beads.geometry.attributes.position.needsUpdate = true;
+      const interval = stageRect && stageRect.width > 0
+        ? stageRect.width
+        : Math.max(180, cardRect.left - copyRect.right);
+      const targetPixels = Math.min(320, Math.max(240, interval - 24));
+      const baseDiameter = 2 * 1.42 * 1.08 * unitPixels * rootScale;
+      group.userData.frameScale = Math.max(0.72, Math.min(1.18, targetPixels / baseDiameter));
     };
+
+    group.userData.spin = 0;
+    group.userData.float = 0;
+    group.userData.fadeMultiplier = 1;
+    group.userData.frameScale = 1;
+    group.userData.relayout = relayout;
+    group.userData.restart = () => {
+      state.startedAt = performance.now();
+      state.elapsed = 0;
+    };
+
+    group.userData.animate = (dt, time, pointer) => {
+      state.elapsed = Math.min(4, (performance.now() - state.startedAt) / 1000);
+      const running = state.elapsed < 4;
+      if (running) markActivity();
+
+      const entry = ease(clamp01(state.elapsed / 0.9));
+      const morph = clamp01((state.elapsed - 0.9) / 1.5);
+      const settle = clamp01((state.elapsed - 2.4) / 1.6);
+      const morphEased = ease(morph);
+      const settleEased = smooth(settle);
+      const breath = Math.sin(time * 0.34) * 0.009 * settleEased;
+      const opacity = fade();
+
+      profileState.elapsed = state.elapsed;
+      profileState.phase = state.elapsed < 0.9 ? "entry" : state.elapsed < 2.4 ? "morph" : state.elapsed < 4 ? "settle" : "final";
+      profileState.frameScale = group.userData.frameScale;
+      profileState.opacity = shellMaterial.opacity;
+      profileState.yaw = form.rotation.y;
+      profileState.pitch = form.rotation.x;
+      profileUniforms.time.value = time;
+      form.scale.setScalar(group.userData.frameScale * (1 + breath));
+      form.rotation.y = pointer.x * 0.13 + Math.sin(time * 0.21) * 0.006;
+      form.rotation.x = -pointer.y * 0.085 + Math.sin(time * 0.17) * 0.004;
+      signal.scale.setScalar(lerp(1, 0.42, morphEased));
+
+      shell.scale.setScalar(lerp(0.86, 1, morphEased));
+      shellMaterial.opacity = lerp(0.02, 0.92, morphEased) * opacity;
+      innerMaterial.opacity = lerp(0.12, 0.86, settleEased) * opacity;
+      rimMaterial.uniforms.uOpacity.value = lerp(0, 3.6, settleEased) * opacity;
+      shardMaterial.opacity = entry * lerp(0.95, 0.18, morphEased) * opacity;
+      shardAccentMaterial.opacity = entry * lerp(0.72, 0.14, morphEased) * opacity;
+      signalCyanMaterial.opacity = entry * lerp(0.62, 0.5, settleEased) * opacity;
+      signalLimeMaterial.opacity = entry * lerp(0.52, 0.42, settleEased) * opacity;
+
+      core.rotation.y = time * 0.08;
+      core.rotation.x = Math.sin(time * 0.19) * 0.08;
+      heart.scale.setScalar(0.9 + Math.sin(time * 0.85) * 0.07 * settleEased);
+
+      pointerOffset.x += (pointer.x - pointerOffset.x) * Math.min(1, dt * 6);
+      pointerOffset.y += (pointer.y - pointerOffset.y) * Math.min(1, dt * 6);
+      const moved = Math.abs(pointer.x - lastPointer.x) > 0.0005 ||
+        Math.abs(pointer.y - lastPointer.y) > 0.0005 ||
+        Math.abs(pointerOffset.x - lastPointer.x) > 0.0005 ||
+        Math.abs(pointerOffset.y - lastPointer.y) > 0.0005;
+      if (running || moved) {
+        for (let i = 0; i < shardCount; i += 1) {
+          placeShard(modules, i, morphEased);
+          placeShard(accents, i, morphEased, true);
+        }
+        modules.instanceMatrix.needsUpdate = true;
+        accents.instanceMatrix.needsUpdate = true;
+
+        const beadPositions = beads.positions;
+        for (let i = 0; i < beads.count; i += 1) {
+          const index = i * 3;
+          const angle = signalAngles[Math.floor(beads.seeds[i * 4])];
+          const t = (beads.seeds[i * 4 + 1] + time * beads.seeds[i * 4 + 3]) % 1;
+          const radius = lerp(1.06, 0.48, morphEased) * t;
+          beadPositions[index] = Math.cos(angle) * radius + pointerOffset.x * 0.012 * (1 - t);
+          beadPositions[index + 1] = Math.sin(angle) * radius * 0.9 - pointerOffset.y * 0.01 * (1 - t);
+          beadPositions[index + 2] = 0.06 + Math.sin(t * Math.PI) * 0.07;
+        }
+        beads.geometry.attributes.position.needsUpdate = true;
+        lastPointer.x = pointer.x;
+        lastPointer.y = pointer.y;
+      }
+    };
+
+    relayout();
   };
 
   const buildContact = () => {
@@ -1791,6 +1896,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
       if (hero.userData.hero) hero.userData.hero.uniforms.pixelRatio.value = renderer.getPixelRatio();
     }
     groups.network?.userData.relayout?.();
+    groups.profile?.userData.relayout?.();
     updateHeroBounds();
   };
 
@@ -1843,7 +1949,13 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
       transition?.from === networkGroup ||
       transition?.to === networkGroup
     ));
-    const parallax = networkActive ? 0.34 : 1;
+    const profileGroup = groups.profile;
+    const profileActive = Boolean(profileGroup && (
+      currentGroup === profileGroup ||
+      transition?.from === profileGroup ||
+      transition?.to === profileGroup
+    ));
+    const parallax = networkActive ? 0.34 : profileActive ? 0.35 : 1;
     const focusX = networkActive ? networkState.focus.x * 0.12 : 0;
     const focusY = networkActive ? networkState.focus.y * 0.1 : 0;
 
@@ -1867,6 +1979,8 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
   let overlayActive = Boolean(document.querySelector("dialog[open]"));
   let enabled = true;
   let tierActive = true;
+  let tourActive = false;
+  const profileState = { phase: "idle", elapsed: 0, frameScale: 1, opacity: 0, yaw: 0, pitch: 0 };
 
   const stats = {
     frames: 0,
@@ -1879,9 +1993,10 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
   };
   if (groups.hero?.userData.hero) stats.hero = groups.hero.userData.hero;
   stats.heroBounds = heroBounds;
+  stats.profile = profileState;
   window.__prototypeSceneStats = stats;
 
-  const canRun = () => tierActive && enabled && visible && !overlayActive && !reducedMotion && !disposed;
+  const canRun = () => tierActive && enabled && visible && !overlayActive && !tourActive && !reducedMotion && !disposed;
   const markActivity = () => { lastActivity = performance.now(); };
   const pointerSettled = () =>
     Math.abs(pointer.targetX - pointer.x) < 0.002 &&
@@ -1973,6 +2088,8 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
   const setVisual = (name) => {
     const next = getGroup(name);
     if (next === currentGroup) return;
+
+    if (name === "profile") next.userData.restart?.();
 
     if (currentGroup === groups.hero && next !== groups.hero) {
       const hero = groups.hero.userData.hero;
@@ -2103,7 +2220,19 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
 
   const onOverlay = (event) => {
     overlayActive = Boolean(event.detail?.active);
-    if (overlayActive) {
+    if (!canRun()) {
+      stop();
+    } else {
+      markActivity();
+      start();
+    }
+  };
+
+  /* The guided tour is a custom overlay, not a native dialog, so it uses its own
+     event and never touches the network reset path attached to prototype:overlay. */
+  const onTour = (event) => {
+    tourActive = Boolean(event.detail?.active);
+    if (!canRun()) {
       stop();
     } else {
       markActivity();
@@ -2192,6 +2321,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
   window.addEventListener("prototype:network-restore", onNetworkRestore);
   window.addEventListener("prototype:network-reset", onNetworkReset);
   window.addEventListener("prototype:overlay", onOverlay);
+  window.addEventListener("prototype:tour-active", onTour);
   document.addEventListener("visibilitychange", onVisibility);
   canvas.addEventListener("webglcontextlost", onContextLost);
   canvas.addEventListener("webglcontextrestored", onContextRestored);
@@ -2226,6 +2356,7 @@ export function createSceneBackground({ canvas, reducedMotion = false }) {
       window.removeEventListener("prototype:network-restore", onNetworkRestore);
       window.removeEventListener("prototype:network-reset", onNetworkReset);
       window.removeEventListener("prototype:overlay", onOverlay);
+      window.removeEventListener("prototype:tour-active", onTour);
       document.removeEventListener("visibilitychange", onVisibility);
       canvas.removeEventListener("webglcontextlost", onContextLost);
       canvas.removeEventListener("webglcontextrestored", onContextRestored);
